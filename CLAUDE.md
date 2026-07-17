@@ -25,7 +25,7 @@ Between them, `formulate` reads inventory and never writes it, `retro` owns ever
 
 ## How we work
 
-- **Recipes are kitchen-executable.** A recipe gets carried to the counter and read with lye on your gloves. It must stand alone: full method inline, no cross-referencing, nothing to go open. This is why `docs/method.md` is a *source to render from*, not a thing recipes link to — and why the Safety section is byte-identical in every recipe rather than factored out. The repetition is the feature.
+- **Recipes are kitchen-executable.** A recipe gets carried to the counter and read with lye on your gloves. It must stand alone: full method inline, no cross-referencing, nothing to go open. This is why `docs/method.md` is a *source to render from*, not a thing recipes link to. Safety is one compact reminder line in the recipe header; the canonical list lives in `docs/method.md`, and the site renders it as a collapsed disclaimer on every recipe page. Recipes poured before 2026-07 keep their older verbatim Safety First section — frozen history.
 - **A poured recipe is history.** The moment a batch is made, its file freezes. Batch #1 describes All-Clad bowls and a Mac knife because that is what actually happened; retrofitting the current method onto it would destroy the record. Only the retro-owned Outcome section may be appended after the pour.
 - **The calculator owns the arithmetic.** Claude does not do lye math. Ever. Not in its head, not by scaling a previous batch — `tools/lye.py` produces the numbers and the skill pastes them.
 - **Ask, don't assume.** For decisions with real forks, present the options and a recommendation and let Brian choose — use the agent's structured question feature when available, otherwise ask conversationally.

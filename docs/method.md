@@ -8,7 +8,7 @@ This document is the *source* a recipe is built from. It is never something a re
 
 ## Safety — the non-negotiables
 
-These appear verbatim in every recipe. They are not factored out, and the repetition is deliberate: a recipe is self-contained, so a kitchen sheet can never depend on a safety doc you'd have to stop and open.
+This is the canonical list. A recipe carries a one-line **Safety** reminder in its header block (glasses and gloves before lye · lye into water, never the reverse · ventilate · soap-only equipment) rather than repeating this section in full; the site renders the full list as a collapsed disclaimer on every recipe page. Recipes poured before 2026-07 carry the older verbatim Safety First block — frozen history, not drift to fix.
 
 - Safety glasses and nitrile gloves on **before** touching lye.
 - Lye (NaOH) is caustic — it burns skin and eyes on contact.
