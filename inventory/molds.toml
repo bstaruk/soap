@@ -1,0 +1,74 @@
+# Molds on hand.
+#
+# Cavity dimensions are measured INSIDE the silicone — the space batter actually occupies. Outer
+# dimensions are what a product page advertises and are useless for fill math.
+#
+# There is deliberately no "recommended oil weight" field. That number is a lie the moment the
+# formula changes: 1,600g is the Nurture ceiling at 38% water and ~6.5% fragrance, and a different
+# water ratio moves it. `tools/lye.py` computes real batter volume from real component densities
+# and checks it against `cavity_ml` — the only thing that actually knows whether a batch fits.
+
+[molds.nurture-5lb]
+label = "Nurture Handmade 5 lb Premium Soap Mold"
+type = "loaf"
+construction = "Plywood frame with removable sides, silicone liner, clear acrylic lid"
+cavity_in = { length = 18.0, width = 3.5, height = 2.5 }
+cavity_ml = 2580.9
+lid = true
+max_fill_pct = 98
+fill_evidence = """
+Batch #4 fit at 97.0% with the lid seated; Batch #6 at 95.2%. Batch #3 overflowed at 108.5%, \
+spilling onto the wood frame and into the lid channel. The ceiling is the LID, not the rim — \
+batter must clear it, and gel phase lifts the loaf slightly. 98% sits above both proven fits and \
+well under the known failure."""
+notes = """
+Push-out holes in the bottom of the wood frame; removable sides make liner removal easy. The \
+clear lid handles soda ash — no towel insulation needed. Replacement liner is the "5 lb Loaf \
+Liner"."""
+capacity_note = """
+Nurture advertises "63 oz". That is the 0.4-rule OIL WEIGHT (157.5 in³ × 0.4 = 63.0 oz), not a \
+volume — and the rule over-predicts these water-heavy recipes by ~10%. Reading it as a batter \
+volume is what produced Batch #3's 1,787g pour and the overflow. The real cavity is ~2,581 mL."""
+
+[molds.bb-10in-loaf]
+label = "Brambleberry 10 inch Loaf Silicone Mold"
+type = "loaf"
+construction = "Single-piece silicone, no liner"
+cavity_in = { length = 10.0, width = 3.375, height = 2.5 }
+cavity_ml = 1382.7
+lid = false
+max_fill_pct = 102
+fill_evidence = """
+Batch #1 fit at 99.6% and domed slightly, which is fine on an open mold — there is no lid to \
+force batter sideways. 102% allows the dome open loaves naturally take."""
+notes = "Set on a flat cutting board before pouring — the silicone sags under a full load. No lining needed."
+
+[molds.bb-6cav-oval]
+label = "Brambleberry 6 Cavity Oval Silicone Mold"
+type = "cavity"
+construction = "Single-piece silicone"
+cavities = 6
+cavity_in = { length = 3.5, width = 2.5, height = 1.0 }
+cavity_ml = 860.3
+cavity_ml_each = 143.4
+lid = false
+max_fill_pct = 100
+fill_evidence = """
+Batch #2 fit at 98.4%, Batch #5 at 95.3%. Small open cavities dome less forgivingly than a loaf — \
+no length to absorb the excess — so the ceiling stays at the rim."""
+notes = """
+Brambleberry recommends 1 tsp sodium lactate per lb of oils for clean release. Individual cavities \
+cool fast; insulate or gel goes uneven (cosmetic only). No cutting — bars are individually molded."""
+
+# The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
+# cut freehand.
+[cutter]
+label = "MoldMarket soap cutting miter box"
+url = "https://moldmarket.com/collections/soap-crafts-supplies/products/soap-cutting-miter-box"
+capacity_in = { width = 4.625, height = 3.5 }
+cut_thicknesses_in = [1.0, 2.0]
+includes = ["bench scraper (flat cutter)", "wavy cutter"]
+clears = { nurture-5lb = true, bb-10in-loaf = true }
+unproven = """
+As of 2026-07-17 the miter box has never cut a loaf. Batch #6 is the first — its file describes the \
+1" cut as a plan, not a record. Confirm the fit at that cut and record it in the batch Outcome."""

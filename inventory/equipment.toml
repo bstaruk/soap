@@ -1,0 +1,115 @@
+# Equipment. Lives in inventory/ rather than docs/method.md because it drifts — and the drift is
+# what goes stale first (the All-Clad bowls sat in the inventory two method-eras after retirement).
+# `docs/method.md` renders the process FROM this; `inventory` owns it.
+#
+# `[[superseded]]` is kept on purpose, not as clutter. Recipes freeze at pour, so Batch #1 will
+# describe All-Clad bowls and a Mac knife forever — that's the archive working correctly. This
+# section is how a future reader knows those entries are history rather than a mistake.
+
+[current.vessels.lye_bowl]
+label = "2qt stainless steel bowl"
+use = "Lye solution — water goes in here, pellets go in after."
+since = "Batch #4 (2026-06-02)"
+
+[current.vessels.pot]
+label = "6qt stockpot"
+use = """
+Oils, clay, and the whole batter. Heated on the induction element, blended in place — no transfer \
+step. The lye solution is poured directly into it."""
+since = "Batch #4 (2026-06-02)"
+
+[current.vessels.lye_staging]
+label = "Any vessel of at least 350 ml / 1.5 cup"
+use = "Weighing NaOH pellets before they go into the water."
+note = "Learned in Batch #4 — 218g of pellets overflows a 1-cup prep bowl."
+
+[[current.tools]]
+label = "Ovente immersion stick blender"
+use = "Trace. 5–10s bursts, alternating with hand stirring."
+dedicated = true
+
+[[current.tools]]
+label = "OXO silicone spatula, 15\""
+dedicated = true
+
+[[current.tools]]
+label = "OXO silicone spatula, 9.8\""
+dedicated = true
+
+[[current.tools]]
+label = "Thermapen One"
+use = "Oil and lye temps. Safe for lye solution — rinse immediately after."
+
+[[current.tools]]
+label = "Digital kitchen scale"
+use = "Everything weighed."
+resolution = "1g"
+note = """
+Whole-gram resolution is why lye rounds to whole grams and why superfat carries margin. On a 540g \
+batch, ±0.5g of lye is roughly ±0.4 points of superfat — comfortable at 5–6%."""
+
+[[current.tools]]
+label = "Baratza Encore grinder"
+use = "Coffee grounds for exfoliant, setting 25–30."
+note = "Latent — no batch has actually used grounds yet."
+
+[[current.cutting]]
+label = "MoldMarket soap cutting miter box"
+url = "https://moldmarket.com/collections/soap-crafts-supplies/products/soap-cutting-miter-box"
+capacity_in = { width = 4.625, height = 3.5 }
+cuts_in = [1.0, 2.0]
+includes = ["bench scraper (flat cutter)", "wavy cutter"]
+since = "Batch #6 (2026-07-17)"
+unproven = """
+Has never cut a loaf. Batch #6 is the first and is still in the mold as of 2026-07-17. Both loaf \
+molds clear it on paper; confirm at the cut."""
+
+[[current.safety]]
+label = "Safety glasses"
+note = "Non-negotiable when handling lye."
+
+[[current.safety]]
+label = "Nitrile gloves"
+note = "Non-negotiable when handling lye."
+
+[[current.safety]]
+label = "99% isopropyl alcohol"
+use = "Spritz the poured top to prevent soda ash."
+since = "Batch #4 (2026-06-02)"
+
+[[superseded]]
+label = "All-Clad mixing bowl, 3qt"
+was = "Main soaping/oils bowl"
+eras = "Batches #1–#2"
+replaced_by = "6qt stockpot"
+why = """
+Blending in the pot on induction removed a transfer step and the reheat that came with it. Retired \
+explicitly in Batch #4."""
+
+[[superseded]]
+label = "All-Clad mixing bowl, 1.5qt"
+was = "Lye solution bowl"
+eras = "Batches #1–#3"
+replaced_by = "2qt stainless bowl"
+
+[[superseded]]
+label = "All-Clad mixing bowl, 5qt"
+was = "Oils bowl for large batches"
+eras = "Batch #3"
+replaced_by = "6qt stockpot"
+
+[[superseded]]
+label = "Mac chef knife"
+was = "Cutting the loaf at ~3cm"
+eras = "Batches #1, #3"
+replaced_by = "MoldMarket miter box + bench scraper"
+why = "Freehand cuts drift. The miter box fixes thickness at 1\" or 2\"."
+
+[[superseded]]
+label = "Nurture Handmade soap cutter wires (5 pack)"
+was = "Cutting the 18\" loaf at 3cm"
+eras = "Batch #4"
+replaced_by = "MoldMarket miter box + bench scraper"
+why = """
+Cleaner than the knife on a long loaf, but still freehand on thickness. The miter box supersedes it \
+and changed the house cut from 3cm to 1\"."""
