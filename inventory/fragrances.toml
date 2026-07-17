@@ -1,0 +1,108 @@
+# Fragrance and essential oils on hand.
+#
+# `initial_g` plus the `used` ledger is AUTHORITATIVE; `remaining_g` is derived from them and
+# exists so a human can read the file without doing arithmetic. `tools/lye.py --self-check`
+# re-derives every one and fails on a mismatch.
+#
+# This structure answers a real failure: Batch #5's ~11g of Sensuous Sandalwood went unrecorded
+# for three weeks because "remaining" was a hand-edited number with nothing to check it against.
+# A ledger entry per batch cannot silently disagree with itself. `retro` appends to `used` at pour
+# and never touches `remaining_g` by hand.
+#
+# `vanillin` and `max_usage_pct` are qualitative or unknown where the supplier figure was never
+# recorded. An unknown is left unknown — a guessed number here is worse than a blank, because it
+# looks measured.
+
+[fragrances.now-cedarwood-virginian]
+label = "Cedarwood Virginian"
+brand = "NOW Foods"
+kind = "essential oil"
+initial_g = 28 # 1 oz
+used = [{ batch = 1, g = 22 }]
+remaining_g = 6
+vanillin = "none"
+max_usage_pct = "unknown"
+behavior = "Very lye-stable. No acceleration, no discoloration — what you pour is what you get."
+scent = "Dry, woody, sharp. Works as an anchor under a brighter top note."
+
+[fragrances.pt-eucalyptus-globulus]
+label = "Eucalyptus Globulus"
+brand = "Plant Therapy (Organic)"
+kind = "essential oil"
+initial_g = 27 # 30 ml
+used = [{ batch = 1, g = 5 }]
+remaining_g = 22
+vanillin = "none"
+max_usage_pct = "unknown"
+behavior = "Lye-stable. No acceleration, no discoloration."
+scent = "Clean, crisp top note. Use sparingly — it dominates fast."
+
+[fragrances.bb-vanilla-bean]
+label = "Vanilla Bean"
+brand = "Brambleberry"
+kind = "fragrance oil"
+initial_g = 57 # 2 oz
+used = [{ batch = 2, g = 24 }, { batch = 6, g = 24 }]
+remaining_g = 9
+vanillin = "high"
+max_usage_pct = "unknown"
+behavior = """
+No acceleration. High vanillin — bars brown to dark tan/brown over cure. Cosmetic and expected; \
+plan the look around it rather than fighting it."""
+scent = "Creamy, sophisticated vanilla liqueur — less sweet than Vanilla Select."
+status = "nearly spent"
+
+[fragrances.bb-sensuous-sandalwood]
+label = "Sensuous Sandalwood"
+brand = "Brambleberry"
+kind = "fragrance oil"
+initial_g = 50 # 1.75 oz
+# Batch #5's 11g was unrecorded at the time; identified 2026-07-17 by reconciling the ledger.
+used = [{ batch = 2, g = 12 }, { batch = 5, g = 11 }, { batch = 6, g = 20 }]
+remaining_g = 7
+vanillin = "none"
+max_usage_pct = "unknown"
+behavior = "No acceleration. Blends cleanly; also carries a bar on its own."
+scent = "Warm, earthy, exotic sandalwood with woody undertones."
+status = "nearly spent"
+
+[fragrances.nurture-smoky-vanilla-woods]
+label = "Smoky Vanilla Woods"
+brand = "Nurture Handmade"
+kind = "FO/EO blend"
+initial_g = 227 # 8 oz
+used = [{ batch = 3, g = 12 }, { batch = 4, g = 52 }]
+remaining_g = 163
+vanillin = "present"
+max_usage_pct = "unknown"
+behavior = "No acceleration in CP. Browns — plan for a dark bar."
+scent = "Top: lavender. Heart: vanilla. Base: smoke, wood, musk. Versatile unisex."
+
+[fragrances.nurture-bourbon-street]
+label = "Bourbon Street"
+brand = "Nurture Handmade"
+kind = "FO/EO blend"
+initial_g = 113 # 4 oz
+used = [{ batch = 4, g = 52 }]
+remaining_g = 61
+vanillin = "unknown"
+max_usage_pct = "unknown"
+behavior = "No acceleration in CP — confirmed in Batch #4."
+scent = """
+Tonka bean, sandalwood, rose, buddha wood. Smoky, warm, masculine. Reviews call the bar scent \
+polarizing. Pairs well with Smoky Vanilla Woods."""
+
+[fragrances.nurture-coconut-praline]
+label = "Coconut + Praline"
+brand = "Nurture Handmade"
+kind = "fragrance oil"
+initial_g = 113 # 4 oz
+used = [{ batch = 3, g = 108 }]
+remaining_g = 5
+vanillin = "present"
+max_usage_pct = "unknown"
+behavior = """
+Slight acceleration in CP — have the clay and fragrance fully prepped before trace and work \
+quickly. Discolors to dark brown over a 4-week cure."""
+scent = "Marshmallow, buttery praline, creamy caramel, toasted coconut. Sweet gourmand."
+status = "nearly spent"

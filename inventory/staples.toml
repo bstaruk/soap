@@ -1,0 +1,76 @@
+# The always-on-hand palette. Assumed available and NOT depletion-tracked — bought in bulk and
+# restocked before they run out, so a ledger would be noise. Fragrances ARE tracked (see
+# fragrances.toml) because they're small, expensive, and the thing that runs out mid-formulation.
+#
+# `formulate` may draw on anything here. An oil NOT listed here has no validated SAP value and
+# cannot enter a recipe without being added to reference/sap-values.toml first.
+#
+# Rates are derived from the six batches in recipes/, not from a supplier's suggestion — they're
+# what has actually been poured and worked.
+
+[oils.olive]
+sap_ref = "olive"
+grade = "Extra virgin. Whatever's cheapest — Pompeian, store brand. Avoid \"light\" / \"extra light\"."
+role = "The backbone. Conditioning, mild, slow to trace, cures hard given time."
+house_range_pct = [62, 72]
+
+[oils.coconut_76]
+sap_ref = "coconut_76"
+grade = "Refined 76°, not virgin — neutral scent."
+role = "Cleansing and bubbly lather. The dial between \"gentle\" and \"stripping\"."
+house_range_pct = [18, 28]
+ceiling_note = """
+28% is the house maximum and it's paired with a 6% superfat to compensate. Above ~30% a bar \
+starts to read as a degreaser on skin."""
+
+[oils.castor]
+sap_ref = "castor"
+grade = "Standard cosmetic castor."
+role = "Creamy, stable bubbles. Small lever, real effect."
+house_range_pct = [10, 10]
+ceiling_note = "Pinned at 10% across every batch to date. Above ~15% bars turn sticky."
+
+[lye.sodium_hydroxide]
+label = "Sodium hydroxide (NaOH) pellets"
+grade = "Food grade, 99%+ pure."
+storage = """
+Sealed, cool, dry. Hygroscopic — a loose lid ruins a container and quietly changes its strength, \
+which is a safety problem, not a waste problem."""
+staging_note = """
+Weigh pellets into a vessel of at least 350 ml. Learned in Batch #4: 218g of pellets does not fit \
+a 1-cup prep bowl."""
+
+[water.distilled]
+label = "Distilled water"
+why = "Tap minerals cause dreaded orange spots and interfere with trace. Distilled only."
+
+[additives.kaolin_clay]
+label = "Kaolin clay, cosmetic grade"
+rate_pct_of_oils = 2.0
+rate_evidence = """
+Every batch to date runs 2.0% of oil weight — 18g/900g, 11g/540g, 32g/1600g. Consistent enough to \
+be the house rate rather than a per-batch decision."""
+role = "Slip, a touch of hardness, and it anchors fragrance."
+method_note = """
+Current method stick-blends it straight into the combined oils before the lye goes in. Batches \
+#1–#3 used a slurry into reserved olive oil after trace; that era is over."""
+
+[additives.sodium_lactate]
+label = "Sodium lactate"
+rate_ml_per_1000g_oils = 10.87
+rate_evidence = """
+The 1 tsp-per-pound-of-oils rule, converted: 4.93 ml / 453.6 g = 10.87 ml per 1000g of oils. \
+Reproduces every batch to the whole millilitre (900g→10, 540g→6, 1600g→17.4≈18). Batch #4's 20 ml \
+was slightly over; Batch #6's 18 ml is the corrected figure."""
+role = "Harder bar, faster and cleaner unmolding. Earns its keep on the oval mold especially."
+method_note = "Stirred into the COOLED lye solution, not the oils."
+ceiling_note = "Stays near 1% of oils at the house rate. Above ~3% bars turn brittle."
+
+[additives.coffee_grounds]
+label = "Spent coffee grounds"
+rate_g_per_900g_oils = 35
+grind = "Baratza Encore, setting 25–30. Medium-coarse, dried."
+role = "Exfoliant. Also deodorizing — a kitchen-bar idea."
+status = """
+Never actually used. Prepped as an option in Batch #1 and skipped; skipped again in #6. Latent, \
+not proven — the first batch that uses it is doing something new."""
