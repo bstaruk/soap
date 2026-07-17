@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Machine-local Claude Code settings (personal permission grants, not shared)
+.claude/settings.local.json
