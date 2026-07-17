@@ -41,6 +41,24 @@ CURE_FULL_DAYS = 42  # "6–8 is better"; 6 weeks is the milestone shown
 
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 
+# Recipes poured before 2026-07 carry the same verbatim "Safety First" section — frozen history,
+# never edited (see recipes/README.md). The site swaps that repeat out at render time for the one
+# shared disclaimer below, collapsed so it's a reminder rather than 20% of every page.
+SAFETY_SECTION_RE = re.compile(r"^## Safety First\n(?:(?!^## ).*\n?)*", re.M)
+
+SAFETY_DISCLAIMER = """<details class="safety">
+    <summary>Lye safety — the non-negotiables</summary>
+    <ul>
+      <li>Safety glasses and nitrile gloves on <strong>before</strong> touching lye.</li>
+      <li>Lye (NaOH) is caustic — it burns skin and eyes on contact.</li>
+      <li>Always add <strong>lye to water</strong>, never water to lye.</li>
+      <li>Work with good ventilation — the fumes are brief but harsh.</li>
+      <li>Soap-only equipment — nothing returns to kitchen use.</li>
+      <li>Raw batter stays caustic until it saponifies.</li>
+    </ul>
+  </details>
+  <p class="safety-print">Safety: glasses and gloves before lye · lye into water, never the reverse · ventilate · soap-only equipment · raw batter is caustic until cured.</p>"""
+
 STATUS_LABEL = {
     "draft": "Draft",
     "ready": "Ready",
@@ -131,10 +149,7 @@ def page(*, title: str, content: str, path: str, description: str = "") -> str:
 {content}
   </main>
   <footer class="site-footer">
-    <p>A solo hobbyist's cold-process soap archive — one file per batch, every lye weight from
-    <a href="{REPO_URL}/blob/main/tools/lye.py">the calculator</a>, cross-checked on
-    <a href="https://www.soapcalc.net">SoapCalc</a> before any pour.</p>
-    <p><a href="{REPO_URL}">source</a> · <a href="/feed.xml">feed</a> · built from the repo on every push</p>
+    <p>Brian's cold-process soap recipe book. <a href="{REPO_URL}">source</a> · <a href="/feed.xml">feed</a></p>
   </footer>
 </body>
 </html>
@@ -238,11 +253,15 @@ def recipe_card(r: dict, molds: dict, fragrances: dict, by_batch: dict[int, dict
 
 
 def build_recipe_page(r: dict, molds: dict, fragrances: dict, by_batch: dict[int, dict]) -> str:
-    body_html = rewrite_repo_links(md_to_html(r["body"]))
+    body_md, has_safety_section = SAFETY_SECTION_RE.subn("@@safety@@\n\n", r["body"], count=1)
+    body_html = rewrite_repo_links(md_to_html(body_md))
     card = recipe_card(r, molds, fragrances, by_batch)
-    # The card belongs right under the recipe's own H1, not above it.
+    # The card belongs right under the recipe's own H1, not above it. Newer recipes have no
+    # Safety First section to swap, so the disclaimer rides along under the card instead.
+    disclaimer = "" if has_safety_section else f"\n  {SAFETY_DISCLAIMER}"
     head, sep, tail = body_html.partition("</h1>")
-    body_html = f"{head}{sep}\n  {card}\n{tail}" if sep else f"{card}\n{body_html}"
+    body_html = f"{head}{sep}\n  {card}{disclaimer}\n{tail}" if sep else f"{card}{disclaimer}\n{body_html}"
+    body_html = body_html.replace("<p>@@safety@@</p>", SAFETY_DISCLAIMER)
     content = f'  <article class="h-recipe recipe">\n{body_html}\n  </article>'
     fm = r["fm"]
     desc = f'Batch #{fm["batch"]} — {STATUS_LABEL.get(fm["status"], fm["status"])}.'
@@ -287,16 +306,12 @@ def build_index(recipes: list[dict], molds: dict) -> str:
     for status in by_status:  # an unknown status is a data error, not something to hide
         sys.exit(f"index: recipe with unknown status '{status}'")
 
-    intro = (
-        '  <p class="intro">One file per batch — formulated against a real mold, every number from'
-        f' <a href="{REPO_URL}/blob/main/tools/lye.py">the calculator</a>, outcomes recorded as they happen.'
-        " The archive is the point: each batch exists to make the next one better.</p>"
-    )
+    intro = '  <p class="intro">One page per batch: the recipe as made, and how it turned out.</p>'
     return page(
         title="Batches",
         content=intro + "\n" + "\n".join(sections),
         path="/",
-        description="A cold-process soap batch archive — recipes, outcomes, and the loop between them.",
+        description="Cold-process soap recipes and how each batch turned out.",
     )
 
 
@@ -376,9 +391,7 @@ def build_inventory(molds: dict, fragrances: dict, staples: dict, equipment: dic
     )
 
     content = f"""  <h1>Inventory</h1>
-  <p class="intro">What's actually in the cabinet. Fragrance amounts are a per-batch ledger, not a
-  hand-edited number — <code>lye.py --self-check</code> re-derives every one. Recipes deplete stock
-  at the pour, never before.</p>
+  <p class="intro">What's in the cabinet. Fragrance amounts are a running ledger, debited at each pour.</p>
 
   <h2>Fragrances</h2>
   <div class="table-scroll"><table>
@@ -422,7 +435,7 @@ def build_inventory(molds: dict, fragrances: dict, staples: dict, equipment: dic
         title="Inventory",
         content=content,
         path="/inventory/",
-        description="Molds, fragrances, staples, and equipment — the state the batches draw from.",
+        description="Molds, fragrances, staple oils, and equipment on hand.",
     )
 
 
@@ -506,7 +519,7 @@ def main(argv: list[str]) -> int:
         build_inventory(molds, fragrances, staples, equipment), encoding="utf-8"
     )
     for name, title, desc in (
-        ("method", "House Method", "The current cold-process method every new recipe renders from."),
+        ("method", "House Method", "The current cold-process method."),
         ("formulation", "Formulation Doctrine", "The house blends, the levers, and their rails."),
     ):
         (out / name).mkdir()

@@ -195,6 +195,19 @@ td.num { font-variant-numeric: tabular-nums; }
 details { margin: 1rem 0; }
 summary { cursor: pointer; color: var(--muted); }
 
+/* shared lye-safety disclaimer, collapsed on every recipe page */
+
+.safety {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.safety summary { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+.safety ul { margin: 0.5rem 0; }
+.safety-print { display: none; }
+
 /* print: the recipe page IS the kitchen sheet */
 
 @media print {
@@ -205,4 +218,7 @@ summary { cursor: pointer; color: var(--muted); }
   .badge { border: 1px solid #000; color: #000; background: #fff !important; }
   table, blockquote { break-inside: avoid; }
   h2 { break-after: avoid; }
+  /* a closed <details> doesn't print its contents, so the kitchen sheet gets the one-liner */
+  .safety { display: none; }
+  .safety-print { display: block; font-size: 9pt; }
 }
