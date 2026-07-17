@@ -1,0 +1,80 @@
+# Saponification values — NaOH, grams of lye per gram of oil.
+#
+# PINNED TO SOAPCALC (https://www.soapcalc.net). This is deliberate and load-bearing: SoapCalc
+# is the cross-check every recipe is verified against before it reaches Ready. If this table and
+# that calculator disagree, every verification becomes noise — you can no longer tell a real
+# error from table drift. Changing a value here invalidates the cross-check behind every Ready
+# recipe and is never a tidy-up.
+#
+# SAP values genuinely vary between sources. The "common" set found in older references
+# (olive 0.134 / coconut 0.178 / castor 0.128) gives 214.8g of lye for Batch #4 where SoapCalc
+# gives 217.9g — a 1.4-point superfat swing from nothing but table choice.
+#
+# VALIDATION — these values reproduce Brian's own SoapCalc-confirmed batches:
+#   Batch #5 — 62/28/10,  540g oils, 6% SF → this table 75.19g,  SoapCalc 75.18g
+#   Batch #6 — 62/28/10, 1600g oils, 6% SF → this table 222.78g, SoapCalc 222.80g
+# Both agree within 0.02g — the same whole gram on the scale, every time. The tiny residual is
+# SoapCalc's internal SAP precision. `tools/lye.py --self-check` re-proves both on every run.
+#
+# Only oils actually in use appear here. An oil without a validated value does not get a guessed
+# one — add it by verifying against SoapCalc first.
+
+# Lye solution density by NaOH concentration (% w/w, 20°C). Kept at the top because a bare key
+# after the first [table] header would be swallowed by that table. The solution is denser than
+# its water, so summing water + lye as separate volumes overstates batter by ~15% and would wave
+# an overflow straight through. Interpolated linearly between these points.
+lye_solution_density = [
+  { naoh_fraction = 0.05, density = 1.054 },
+  { naoh_fraction = 0.10, density = 1.109 },
+  { naoh_fraction = 0.15, density = 1.165 },
+  { naoh_fraction = 0.20, density = 1.219 },
+  { naoh_fraction = 0.25, density = 1.274 },
+  { naoh_fraction = 0.30, density = 1.328 },
+  { naoh_fraction = 0.35, density = 1.380 },
+]
+
+[oils.olive]
+label = "Olive oil"
+naoh_sap = 0.1353
+density_g_per_ml = 0.915
+soapcalc_entry = "Olive Oil"
+notes = """
+Extra virgin, pure, and virgin all use SoapCalc's single "Olive Oil" entry. "Olive Oil, pomace" \
+is a SEPARATE entry with a different SAP value — pomace is not a drop-in substitute and changes \
+the lye. Avoid "light" / "extra light", which are refined differently. Brand does not matter \
+(Pompeian, store brand); SAP variance between extra-virgin brands is well inside whole-gram \
+rounding."""
+
+[oils.coconut_76]
+label = "Coconut oil, refined 76°"
+naoh_sap = 0.1835
+density_g_per_ml = 0.92
+soapcalc_entry = "Coconut Oil, 76 deg"
+notes = """
+Refined, not virgin — neutral scent. Density is for melted oil, which is how it goes into the \
+pot. Distinct from the 92° entry; do not substitute."""
+
+[oils.castor]
+label = "Castor oil"
+naoh_sap = 0.1286
+density_g_per_ml = 0.961
+soapcalc_entry = "Castor Oil"
+notes = "House blends run it at 10% of oils for lather. Above ~15% it turns bars sticky."
+
+# Non-saponifying components. They contribute no lye demand but real volume, which is what the
+# mold fill check needs — Batch #3 overflowed on volume the lye math never saw.
+
+[components.water]
+density_g_per_ml = 1.0
+
+[components.fragrance]
+density_g_per_ml = 0.95
+notes = "FOs and EOs vary ~0.85–1.05. 0.95 is a serviceable mean at the ≤7% loads used here."
+
+[components.kaolin_clay]
+density_g_per_ml = 2.6
+notes = "Dry powder density. Displaces little at house rates (~2% of oils) but is counted rather than assumed away."
+
+[components.sodium_lactate]
+density_g_per_ml = 1.0
+notes = "Dosed in mL, not grams — the one exception to weigh-everything, because that's how the bottle works."
