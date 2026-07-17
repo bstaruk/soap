@@ -2,5 +2,8 @@
 __pycache__/
 *.pyc
 
+# Built site output (tools/site.py); CI builds and deploys it, git never carries it
+_site/
+
 # Machine-local Claude Code settings (personal permission grants, not shared)
 .claude/settings.local.json
