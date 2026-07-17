@@ -8,9 +8,9 @@ The repo is **public as a worked example**, not as a boilerplate. The inventory 
 
 - **`.claude/skills/`** — the loop. `formulate`, `retro`, `inventory`. Invoke as `/name`.
 - **`docs/`** — how we make soap. `method.md` is the current house process; `formulation.md` is the house doctrine (ratios, superfat, water, fragrance rates).
-- **`inventory/`** — what's on hand. `molds.yaml`, `fragrances.yaml`, `staples.yaml`.
+- **`inventory/`** — what's on hand. `molds.toml`, `fragrances.toml`, `staples.toml`, `equipment.toml`.
 - **`recipes/`** — one file per batch, the durable archive. Lifecycle and template: [`recipes/README.md`](recipes/README.md).
-- **`reference/sap-values.yaml`** — saponification values, pinned to SoapCalc.
+- **`reference/sap-values.toml`** — saponification values, pinned to SoapCalc.
 - **`tools/lye.py`** — the calculator. Lye, water, mold fill check, yield. No dependencies.
 - **`tools/site.py` + `tools/check.py`** — the static site ([soap.brian.staruk.net](https://soap.brian.staruk.net)) and the archive lint behind it. CI (`.github/workflows/site.yml`) re-proves every recipe's numbers through the calculator on every PR and deploys from `main`. Site-toolchain deps live in `tools/site-requirements.txt`; the calculator stays zero-dep.
 
@@ -37,7 +37,7 @@ These are the ones that keep the soap from burning someone.
 
 - **No lye weight reaches a recipe unless `tools/lye.py` produced it.** Not from a model, not from scaling a previous batch's number. Batch #3 scaled Batch #1's lye instead of recalculating and ran ~1.1 points of superfat below its own label — the cautionary tale is already in the archive.
 - **No skill asserts a recipe is lye-safe on its own authority.** The calculator shows its work; it does not get a vote. Only `soapcalc_confirmed: true` — set by Brian, after his own cross-check at [SoapCalc](https://www.soapcalc.net) — may move a recipe to `Ready`. A skill that claims a recipe is safe has broken the one guard that matters.
-- **The SAP table is pinned to SoapCalc.** Changing `reference/sap-values.yaml` invalidates the cross-check behind every `Ready` recipe. It is a deliberate act with a re-verification cost, never a tidy-up.
+- **The SAP table is pinned to SoapCalc.** Changing `reference/sap-values.toml` invalidates the cross-check behind every `Ready` recipe. It is a deliberate act with a re-verification cost, never a tidy-up.
 - **Inventory depletes at pour, never at `Ready`.** A recipe that was never made consumed nothing.
 - **Mold fit is proved by volume, never by a rule of thumb.** The 0.4 rule (cubic inches × 0.4 = oz of oils) over-predicts these recipes by ~10% because they run a lot of water; it is what overflowed Batch #3. The calculator sums real component volumes against real cavity volume.
 - **Never guess at a number that belongs on a scale.** An unrecorded fragrance weight is an open question, not an estimate to quietly fill in.
