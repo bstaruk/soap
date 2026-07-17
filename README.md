@@ -44,6 +44,10 @@ $ python3 tools/lye.py --mold nurture-5lb --oils 1600 --blend olive=62,coconut=2
 $ python3 tools/lye.py --fit bb-6cav-oval --blend olive=72,coconut=18,castor=10 --superfat 5 --target-fill 93
 ```
 
+## The site
+
+The whole archive publishes to **[soap.brian.staruk.net](https://soap.brian.staruk.net)** — a no-JS static site rendered straight from these files by [`tools/site.py`](tools/site.py), a ~350-line hand-rolled generator (the recipes were already frontmatter + markdown; a real SSG would just want to own the layout). The interesting part is the pipeline, not the pages: before anything deploys, CI runs the calculator's self-check and [`tools/check.py`](tools/check.py), which re-derives every recipe's frozen lye and fill numbers through the calculator and cross-checks fragrance weights against the inventory ledger. If the SAP table drifts or a number was ever hand-scaled, the build goes red instead of publishing. The site is a projection of the repo; the repo has to prove itself first.
+
 ## Repo map
 
 - **[`CLAUDE.md`](CLAUDE.md)** — the rules Claude works under (this is the real spec for how the loop behaves).
@@ -53,6 +57,7 @@ $ python3 tools/lye.py --fit bb-6cav-oval --blend olive=72,coconut=18,castor=10 
 - **`recipes/`** — one file per batch, the durable archive. Lifecycle and template in [`recipes/README.md`](recipes/README.md).
 - **`reference/sap-values.toml`** — saponification values, pinned to SoapCalc.
 - **`tools/lye.py`** — the calculator.
+- **`tools/site.py`** / **`tools/check.py`** — the static site and the CI lint that guards it (below).
 
 ## A safety note
 
