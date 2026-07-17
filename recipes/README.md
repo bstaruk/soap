@@ -4,7 +4,7 @@ One file per batch — the durable archive. A recipe is both a **kitchen sheet**
 
 ## Kitchen-executable
 
-A recipe **stands alone**. Full method inline, full safety inline, nothing to cross-reference, nothing to go open mid-pour. This is why the method isn't a link and the Safety section is copied verbatim into every file — a recipe you're reading with lye on your gloves cannot depend on a document you'd have to stop and open. The repetition is the feature, not duplication to factor out.
+A recipe **stands alone**. Full method inline, nothing to cross-reference, nothing to go open mid-pour — a recipe you're reading with lye on your gloves cannot depend on a document you'd have to stop and open. Safety is a single compact reminder line in the header block; the canonical list lives in [`docs/method.md`](../docs/method.md), and the site renders it as a collapsed disclaimer on every recipe page. (Recipes poured before 2026-07 carry the older full Safety First section — frozen history, per the next rule.)
 
 ## Frozen at pour
 
@@ -74,16 +74,9 @@ yield: { bars: 6, cut_in: null }            # cut_in null for cavity molds
 > **Mold:** Brambleberry 6-Cavity Oval (3.5" × 2.5" × 1" per cavity)
 > **Yield:** 6 bars | **Cure:** 4 weeks minimum | **Active:** ~1 hour
 > **Basis:** the hand bar (62/28/10 @ 6% SF), Batch #5's line
+> **Safety:** glasses and gloves on before touching lye · lye into water, never the reverse · ventilate · soap-only equipment
 
-<!-- Safety First — verbatim in every recipe, never abbreviated. See docs/method.md. -->
-## Safety First
-
-- Safety glasses and nitrile gloves on before touching lye
-- Lye (NaOH) is caustic — burns skin and eyes on contact
-- Always add **lye to water**, never water to lye
-- Well-ventilated area — fumes are brief but harsh
-- Soap-only equipment — never returns to kitchen use
-
+<!-- Safety is the one line above — the canonical list lives in docs/method.md. -->
 ## Recipe
 
 <!-- Weights straight from tools/lye.py. The confirm line is not optional. -->

@@ -45,7 +45,7 @@ Never compute, scale, round, or adjust a lye weight yourself. If the calculator 
 Create `recipes/NNN-<slug>.md` from the template in [`recipes/README.md`](../../../recipes/README.md):
 
 - **Frontmatter** carries the settled data — mold, blend, superfat, water, `lye_g`, `fill_pct`, fragrance ids and grams, yield — all from the calculator. `status: draft`. `soapcalc_confirmed: false`.
-- **Body** is the full kitchen sheet: Safety verbatim, the weight table, and the complete current method inline from `docs/method.md`, tailored to this mold and fragrance (mold prep, whether the fragrance accelerates, loaf-cut vs oval). It must stand alone at the counter.
+- **Body** is the full kitchen sheet: the one-line **Safety** reminder in the header block, the weight table, and the complete current method inline from `docs/method.md`, tailored to this mold and fragrance (mold prep, whether the fragrance accelerates, loaf-cut vs oval). It must stand alone at the counter.
 - Fragrance ids must match `inventory/fragrances.toml` keys — they're what `retro` debits at pour.
 - The number is the batch's number (next after the highest existing).
 
