@@ -1,0 +1,68 @@
+# The site pipeline: prove the archive, then publish it.
+#
+# Every PR and every push to main runs the same two proofs before anything builds:
+#   1. tools/lye.py --self-check  — the calculator re-derives six real batches and the
+#      fragrance ledger against the pinned SAP table.
+#   2. tools/check.py             — every recipe's frozen lye/fill numbers are re-derived
+#      through the calculator, lifecycle invariants hold, and recipe fragrance weights
+#      match the inventory ledger.
+# A red check means the archive and the calculator disagree; the site never publishes
+# from that state. Deploy runs only on a push to main.
+
+name: site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: prove the archive
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Calculator self-check (six real batches + fragrance ledger)
+        run: python tools/lye.py --self-check
+      - name: Archive lint (recipes reproduce through the calculator)
+        run: |
+          pip install -r tools/site-requirements.txt
+          python tools/check.py
+
+  build:
+    name: build the site
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build
+        run: |
+          pip install -r tools/site-requirements.txt
+          python tools/site.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: deploy to soap.brian.staruk.net
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
