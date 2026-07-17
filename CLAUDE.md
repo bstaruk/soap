@@ -12,6 +12,7 @@ The repo is **public as a worked example**, not as a boilerplate. The inventory 
 - **`recipes/`** — one file per batch, the durable archive. Lifecycle and template: [`recipes/README.md`](recipes/README.md).
 - **`reference/sap-values.yaml`** — saponification values, pinned to SoapCalc.
 - **`tools/lye.py`** — the calculator. Lye, water, mold fill check, yield. No dependencies.
+- **`tools/site.py` + `tools/check.py`** — the static site ([soap.brian.staruk.net](https://soap.brian.staruk.net)) and the archive lint behind it. CI (`.github/workflows/site.yml`) re-proves every recipe's numbers through the calculator on every PR and deploys from `main`. Site-toolchain deps live in `tools/site-requirements.txt`; the calculator stays zero-dep.
 
 ## The loop
 
