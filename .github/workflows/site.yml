@@ -1,13 +1,20 @@
 # The site pipeline: prove the archive, then publish it.
 #
-# Every PR and every push to main runs the same two proofs before anything builds:
-#   1. tools/lye.py --self-check  — the calculator re-derives six real batches and the
+# Every PR and every push to main runs the same proofs before anything builds:
+#   1. tools/lye.ts --self-check  — the calculator re-derives six real batches and the
 #      fragrance ledger against the pinned SAP table.
-#   2. tools/check.py             — every recipe's frozen lye/fill numbers are re-derived
+#   2. tools/check.ts             — every recipe's frozen lye/fill numbers are re-derived
 #      through the calculator, lifecycle invariants hold, and recipe fragrance weights
 #      match the inventory ledger.
+#   3. vitest and astro check     — the calculator's own unit tests (rounding, sorting, the
+#      six-batch fixture) and a typecheck across the site.
 # A red check means the archive and the calculator disagree; the site never publishes
 # from that state. Deploy runs only on a push to main.
+#
+# The check job installs the whole dependency tree to run proofs that have nothing to do
+# with the website. That is accepted rather than overlooked: splitting `astro check` into
+# the build job would keep the archive proof lean but weaken the rule that nothing
+# typechecks late. The job ORDER — check, then build, then deploy — is the doctrine.
 
 name: site
 
@@ -19,21 +26,30 @@ on:
 permissions:
   contents: read
 
+env:
+  # Type-stripping is off below 22.18 and `node tools/lye.ts` dies with a bare syntax error.
+  # Kept in step with the `engines` field in package.json.
+  NODE_VERSION: "24"
+
 jobs:
   check:
     name: prove the archive
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
       - name: Calculator self-check (six real batches + fragrance ledger)
-        run: python tools/lye.py --self-check
+        run: node tools/lye.ts --self-check
       - name: Archive lint (recipes reproduce through the calculator)
-        run: |
-          pip install -r tools/site-requirements.txt
-          python tools/check.py
+        run: node tools/check.ts
+      - name: Unit tests
+        run: npm test
+      - name: Typecheck
+        run: npm run check
 
   build:
     name: build the site
@@ -41,16 +57,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
       - name: Build
-        run: |
-          pip install -r tools/site-requirements.txt
-          python tools/site.py
+        run: npm run build
+      - name: Build lint (published URLs, feed ids, printed kitchen sheet)
+        run: npm run check:site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: dist
 
   deploy:
     name: deploy to soap.brian.staruk.net
