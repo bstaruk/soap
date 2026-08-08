@@ -1,13 +1,13 @@
 ---
 name: formulate
-description: The entry point of the soap loop. Talk through a batch — mold, use case, fragrance, any specific oils — converge on a shared understanding, then generate a Draft recipe with every number from tools/lye.py. Reads inventory but never writes it; hands off to Brian's SoapCalc cross-check, which is the only thing that moves a recipe to Ready. Use when starting a new batch.
+description: The entry point of the soap loop. Talk through a batch — mold, use case, fragrance, any specific oils — converge on a shared understanding, then generate a Draft recipe with every number from tools/lye.ts. Reads inventory but never writes it; hands off to Brian's SoapCalc cross-check, which is the only thing that moves a recipe to Ready. Use when starting a new batch.
 ---
 
 # Formulate — design one batch
 
 A conversation that ends in a Draft recipe file. This is where a batch is thought through and written down; it is not where the batch is made (that's the counter) or recorded (that's `retro`). One session designs one recipe.
 
-The whole skill rests on one rule from the root [`CLAUDE.md`](../../../CLAUDE.md): **Claude never does lye arithmetic.** Every weight in the output comes from [`tools/lye.py`](../../../tools/lye.py). The skill's job is to hold a good design conversation and then run the calculator — not to be the calculator.
+The whole skill rests on one rule from the root [`CLAUDE.md`](../../../CLAUDE.md): **Claude never does lye arithmetic.** Every weight in the output comes from [`tools/lye.ts`](../../../tools/lye.ts). The skill's job is to hold a good design conversation and then run the calculator — not to be the calculator.
 
 ## 1. Ground before talking
 
@@ -34,8 +34,8 @@ For real forks, present options and a recommendation and let Brian choose — th
 
 Once the brief is settled, and only then:
 
-- **To size the batch to the mold:** `python3 tools/lye.py --fit <mold> --blend <...> --superfat <n> --water 38 --fragrance-pct <n> --target-fill <92–95>`. Aim for 92–95% of the mold's ceiling — full bars, real overflow margin. Never design to 100%.
-- **To produce the final weights:** `python3 tools/lye.py --mold <mold> --oils <g> --blend <...> --superfat <n> --water 38 --fragrance <g>`. Paste the real output; do not transcribe numbers by hand or "clean them up."
+- **To size the batch to the mold:** `node tools/lye.ts --fit <mold> --blend <...> --superfat <n> --water 38 --fragrance-pct <n> --target-fill <92–95>`. Aim for 92–95% of the mold's ceiling — full bars, real overflow margin. Never design to 100%.
+- **To produce the final weights:** `node tools/lye.ts --mold <mold> --oils <g> --blend <...> --superfat <n> --water 38 --fragrance <g>`. Paste the real output; do not transcribe numbers by hand or "clean them up."
 - If the fill comes back over the ceiling, the batch is too big for the mold — resize, don't rationalize. The calculator saying OVERFLOWS is the Batch #3 guard doing its job.
 
 Never compute, scale, round, or adjust a lye weight yourself. If the calculator can't answer something (a new oil with no SAP value), stop — that oil needs a validated entry in `reference/sap-values.toml` first, and that's an `inventory`/reference task, not a guess to make here.
@@ -59,7 +59,7 @@ The recipe is **Draft, not Ready.** Tell Brian plainly:
 
 ## Guardrails
 
-- **Never do lye math.** Every weight comes from `tools/lye.py`. No exceptions, no "just this once for a round number."
+- **Never do lye math.** Every weight comes from `tools/lye.ts`. No exceptions, no "just this once for a round number."
 - **Inventory is read-only here.** No edits to molds, fragrances, or staples. Depletion happens at pour, in `retro`.
 - **Never set `ready` or `soapcalc_confirmed`.** The skill produces Draft; Brian's cross-check produces Ready.
 - **Never design to the rim.** Target 92–95% fill. A batch the calculator flags as overflowing gets resized, not talked into fitting.

@@ -14,7 +14,7 @@
 #   Batch #5 — 62/28/10,  540g oils, 6% SF → this table 75.19g,  SoapCalc 75.18g
 #   Batch #6 — 62/28/10, 1600g oils, 6% SF → this table 222.78g, SoapCalc 222.80g
 # Both agree within 0.02g — the same whole gram on the scale, every time. The tiny residual is
-# SoapCalc's internal SAP precision. `tools/lye.py --self-check` re-proves both on every run.
+# SoapCalc's internal SAP precision. `tools/lye.ts --self-check` re-proves both on every run.
 #
 # Only oils actually in use appear here. An oil without a validated value does not get a guessed
 # one — add it by verifying against SoapCalc first.

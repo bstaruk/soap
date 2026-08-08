@@ -19,7 +19,7 @@ This is the canonical list. A recipe carries a one-line **Safety** reminder in i
 
 ## The number rule
 
-**No lye weight is ever eyeballed, scaled, or done by hand.** It comes out of [`tools/lye.py`](../tools/lye.py), which is pinned to the same SAP table SoapCalc uses. Then it gets **cross-checked on SoapCalc** before the pour. The calculator is the first opinion; SoapCalc is the second; the recipe is not `Ready` until both agree. Batch #3 is why — its lye was scaled from a previous batch instead of recalculated, and it ran over a point of superfat below its label.
+**No lye weight is ever eyeballed, scaled, or done by hand.** It comes out of [`tools/lye.ts`](../tools/lye.ts), which is pinned to the same SAP table SoapCalc uses. Then it gets **cross-checked on SoapCalc** before the pour. The calculator is the first opinion; SoapCalc is the second; the recipe is not `Ready` until both agree. Batch #3 is why — its lye was scaled from a previous batch instead of recalculated, and it ran over a point of superfat below its label.
 
 ## Standing parameters
 

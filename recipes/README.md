@@ -12,11 +12,11 @@ The moment a batch is poured, its file is **history and does not change** — ex
 
 ## The numbers are frozen too
 
-Every weight in a recipe came out of [`tools/lye.py`](../tools/lye.py) and was cross-checked on SoapCalc. No weight is ever hand-scaled from another batch — that is the Batch #3 mistake, preserved in the archive as a warning. A recipe reaches `Ready` **only after** `soapcalc_confirmed: true`, which only Brian sets, after his own cross-check.
+Every weight in a recipe came out of [`tools/lye.ts`](../tools/lye.ts) and was cross-checked on SoapCalc. No weight is ever hand-scaled from another batch — that is the Batch #3 mistake, preserved in the archive as a warning. A recipe reaches `Ready` **only after** `soapcalc_confirmed: true`, which only Brian sets, after his own cross-check.
 
 ## Frontmatter is the data; prose is the sheet
 
-The numbers a tool needs live in YAML frontmatter — mold, blend, superfat, water, lye, fill, dates, fragrance ids. The Markdown body is for the human at the stockpot. A future phone-friendly site renders from the frontmatter, so it carries the real data rather than forcing a parser to dig it back out of a table. (Recipes use YAML frontmatter; the inventory and reference data files use TOML, because those are read by the zero-dependency calculator. Different jobs, different formats.)
+The numbers a tool needs live in YAML frontmatter — mold, blend, superfat, water, lye, fill, dates, fragrance ids. The Markdown body is for the human at the stockpot. The site renders from the frontmatter, so it carries the real data rather than forcing a parser to dig it back out of a table. (Recipes use YAML frontmatter because they are documents with a body; the inventory and reference data files use TOML because they are pure data. Different jobs, different formats.)
 
 ## Lifecycle
 
@@ -58,9 +58,9 @@ oils_g: 520
 superfat_pct: 6
 water_pct: 38
 oils: { olive: 62, coconut_76: 28, castor: 10 }   # percentages, must sum to 100
-lye_g: 71                   # from tools/lye.py — NEVER hand-scaled
+lye_g: 71                   # from tools/lye.ts — NEVER hand-scaled
 soapcalc_confirmed: false   # only Brian sets true, after his own cross-check → gate to `ready`
-fill_pct: 92.9              # from tools/lye.py; must be under the mold's ceiling
+fill_pct: 92.9              # from tools/lye.ts; must be under the mold's ceiling
 fragrance:
   - { id: bb-sensuous-sandalwood, g: 16 }   # ids from inventory/fragrances.toml → drives depletion
 yield: { bars: 6, cut_in: null }            # cut_in null for cavity molds
@@ -79,7 +79,7 @@ yield: { bars: 6, cut_in: null }            # cut_in null for cavity molds
 <!-- Safety is the one line above — the canonical list lives in docs/method.md. -->
 ## Recipe
 
-<!-- Weights straight from tools/lye.py. The confirm line is not optional. -->
+<!-- Weights straight from tools/lye.ts. The confirm line is not optional. -->
 | Component | Amount | Notes |
 |---|---|---|
 | Olive oil | 322g | 62% — extra virgin |

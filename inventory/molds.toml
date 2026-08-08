@@ -5,7 +5,7 @@
 #
 # There is deliberately no "recommended oil weight" field. That number is a lie the moment the
 # formula changes: 1,600g is the Nurture ceiling at 38% water and ~6.5% fragrance, and a different
-# water ratio moves it. `tools/lye.py` computes real batter volume from real component densities
+# water ratio moves it. `tools/lye.ts` computes real batter volume from real component densities
 # and checks it against `cavity_ml` — the only thing that actually knows whether a batch fits.
 
 [molds.nurture-5lb]

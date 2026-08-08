@@ -16,7 +16,7 @@ A `ready` (or `draft`, if he made it without a formal confirm) recipe became a r
 1. **Confirm it matches.** Did the batch go as written, or did anything change at the counter — a substituted fragrance, a different amount, a tweak? Record reality, not the plan. If the lye or oils changed, the recipe's calculated numbers no longer describe what's in the mold; note it prominently.
 2. **Set status and date.** `status: curing`, `poured: <YYYY-MM-DD>`. Leave `cut` blank — it's still in the mold.
 3. **Debit the fragrance ledger — the one write to inventory.** For each fragrance the batch used, append `{ batch = N, g = M }` to that fragrance's `used` list in [`inventory/fragrances.toml`](../../../inventory/fragrances.toml), and recompute `remaining_g` as `initial_g` minus the new ledger sum. Use the amounts actually poured, not the planned ones if they differ.
-4. **Prove the ledger still reconciles.** Run `python3 tools/lye.py --self-check` and confirm every fragrance still derives cleanly. This is the guard against exactly the drift that lost Batch #5's 11g — never skip it.
+4. **Prove the ledger still reconciles.** Run `node tools/lye.ts --self-check` and confirm every fragrance still derives cleanly. This is the guard against exactly the drift that lost Batch #5's 11g — never skip it.
 5. **Open the Outcome.** Append the pour to the recipe's Outcome section: date, fill as poured, anything notable. Note what the next retro should capture (the cut, then the cure).
 
 Depletion happens **here, at pour** — never at `ready`. A recipe that was designed but not made consumed nothing.

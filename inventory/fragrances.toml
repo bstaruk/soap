@@ -1,7 +1,7 @@
 # Fragrance and essential oils on hand.
 #
 # `initial_g` plus the `used` ledger is AUTHORITATIVE; `remaining_g` is derived from them and
-# exists so a human can read the file without doing arithmetic. `tools/lye.py --self-check`
+# exists so a human can read the file without doing arithmetic. `tools/lye.ts --self-check`
 # re-derives every one and fails on a mismatch.
 #
 # This structure answers a real failure: Batch #5's ~11g of Sensuous Sandalwood went unrecorded

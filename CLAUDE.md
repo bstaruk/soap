@@ -11,8 +11,10 @@ The repo is **public as a worked example**, not as a boilerplate. The inventory 
 - **`inventory/`** — what's on hand. `molds.toml`, `fragrances.toml`, `staples.toml`, `equipment.toml`.
 - **`recipes/`** — one file per batch, the durable archive. Lifecycle and template: [`recipes/README.md`](recipes/README.md).
 - **`reference/sap-values.toml`** — saponification values, pinned to SoapCalc.
-- **`tools/lye.py`** — the calculator. Lye, water, mold fill check, yield. No dependencies.
-- **`tools/site.py` + `tools/check.py`** — the static site ([soap.brian.staruk.net](https://soap.brian.staruk.net)) and the archive lint behind it. CI (`.github/workflows/site.yml`) re-proves every recipe's numbers through the calculator on every PR and deploys from `main`. Site-toolchain deps live in `tools/site-requirements.txt`; the calculator stays zero-dep.
+- **`src/lib/`** — the shared core in TypeScript. `calc.ts` is the arithmetic and the only source of it; `data.ts` and `schema.ts` read and validate the TOML and recipe frontmatter.
+- **`tools/lye.ts`** — the calculator. Lye, water, mold fill check, yield. Runs with no build step (`node tools/lye.ts`), and re-proves itself on every run.
+- **`tools/check.ts` + `tools/check-site.ts`** — the archive lint and the build lint. CI (`.github/workflows/site.yml`) re-proves every recipe's numbers through the calculator on every PR and deploys from `main`.
+- **`src/pages/` + `src/components/`** — the site ([soap.brian.staruk.net](https://soap.brian.staruk.net)), an Astro build over the same data the skills read.
 
 ## The loop
 
@@ -27,7 +29,7 @@ Between them, `formulate` reads inventory and never writes it, `retro` owns ever
 
 - **Recipes are kitchen-executable.** A recipe gets carried to the counter and read with lye on your gloves. It must stand alone: full method inline, no cross-referencing, nothing to go open. This is why `docs/method.md` is a *source to render from*, not a thing recipes link to. Safety is one compact reminder line in the recipe header; the canonical list lives in `docs/method.md`, and the site renders it as a collapsed disclaimer on every recipe page. Recipes poured before 2026-07 keep their older verbatim Safety First section — frozen history.
 - **A poured recipe is history.** The moment a batch is made, its file freezes. Batch #1 describes All-Clad bowls and a Mac knife because that is what actually happened; retrofitting the current method onto it would destroy the record. Only the retro-owned Outcome section may be appended after the pour.
-- **The calculator owns the arithmetic.** Claude does not do lye math. Ever. Not in its head, not by scaling a previous batch — `tools/lye.py` produces the numbers and the skill pastes them.
+- **The calculator owns the arithmetic.** Claude does not do lye math. Ever. Not in its head, not by scaling a previous batch — `tools/lye.ts` produces the numbers and the skill pastes them.
 - **Ask, don't assume.** For decisions with real forks, present the options and a recommendation and let Brian choose — use the agent's structured question feature when available, otherwise ask conversationally.
 - **The archive is for learning.** A batch with no recorded outcome taught us nothing. Recipes exist to make the next one better, which only works if `retro` actually runs.
 
@@ -35,7 +37,8 @@ Between them, `formulate` reads inventory and never writes it, `retro` owns ever
 
 These are the ones that keep the soap from burning someone.
 
-- **No lye weight reaches a recipe unless `tools/lye.py` produced it.** Not from a model, not from scaling a previous batch's number. Batch #3 scaled Batch #1's lye instead of recalculating and ran ~1.1 points of superfat below its own label — the cautionary tale is already in the archive.
+- **No lye weight reaches a recipe unless `tools/lye.ts` produced it.** Not from a model, not from scaling a previous batch's number. Batch #3 scaled Batch #1's lye instead of recalculating and ran ~1.1 points of superfat below its own label — the cautionary tale is already in the archive.
+- **The calculator runs without a build step and re-proves itself on every run.** It is read at the counter; it cannot depend on a compile, and `--self-check` must stay in front of anyone using it. It is no longer dependency-free — Node has no TOML parser, so it reads the SAP table through `smol-toml` — and that is the invariant that replaced "no dependencies": *sole source of lye arithmetic, no build step, self-proving.*
 - **No skill asserts a recipe is lye-safe on its own authority.** The calculator shows its work; it does not get a vote. Only `soapcalc_confirmed: true` — set by Brian, after his own cross-check at [SoapCalc](https://www.soapcalc.net) — may move a recipe to `Ready`. A skill that claims a recipe is safe has broken the one guard that matters.
 - **The SAP table is pinned to SoapCalc.** Changing `reference/sap-values.toml` invalidates the cross-check behind every `Ready` recipe. It is a deliberate act with a re-verification cost, never a tidy-up.
 - **Inventory depletes at pour, never at `Ready`.** A recipe that was never made consumed nothing.
