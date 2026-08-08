@@ -2,7 +2,6 @@
 
 node_modules/
 dist/
-_site/
 .astro/
 
 # The archive is frozen. A formatter run over recipes/ would reflow the ingredient
@@ -10,10 +9,6 @@ _site/
 # Markdown is off limits — docs/ and the READMEs too, since CLAUDE.md's "do not manually
 # hard-wrap prose" convention is not something Prettier knows how to respect.
 *.md
-
-# The Python generator's stylesheet, alive only until tools/site.py is deleted. Reformatting
-# it now would be churn in a file on its way out.
-tools/site.css
 
 # TOML is hand-commented data with load-bearing layout (the SAP table's leading array
 # has a comment explaining why it sits above the first [table] header). Leave it alone.

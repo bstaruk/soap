@@ -1,13 +1,8 @@
 .DS_Store
-__pycache__/
-*.pyc
 
 node_modules/
 
 # Built site output; CI builds and deploys it, git never carries it.
-# _site/ is tools/site.py's, dist/ is Astro's — both live here until the Python
-# generator is deleted.
-_site/
 dist/
 .astro/
 
