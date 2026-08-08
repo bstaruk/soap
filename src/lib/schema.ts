@@ -18,9 +18,15 @@ export const isoDate = z
   .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v))
   .refine(isIsoDate, "expected a real calendar date, YYYY-MM-DD");
 
-/** The same, for fields that are legitimately empty until the batch reaches that milestone. */
+/** The same, for fields that are legitimately empty until the batch reaches that milestone.
+ *
+ * `poured:` and `cut:` sit in the template as bare keys with no value, and a Draft may omit them
+ * altogether — both mean "hasn't happened yet" and both normalise to `null`. What is *not*
+ * tolerated is a value that is present and malformed.
+ */
 export const isoDateOrNull = z
-  .union([z.string(), z.date(), z.null(), z.undefined()])
+  .union([z.string(), z.date(), z.null()])
+  .nullish()
   .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : (v ?? null)))
   .refine((v) => v === null || isIsoDate(v), "expected a real calendar date, YYYY-MM-DD");
 
@@ -205,10 +211,27 @@ export type Staples = z.infer<typeof staplesFile>;
 export type Equipment = z.infer<typeof equipmentFile>;
 export type RecipeFrontmatter = z.infer<typeof recipeFrontmatter>;
 
-/** Flatten a zod failure into the one-line-per-problem shape the archive lint prints. */
-export function issueLines(error: z.ZodError): string[] {
+/** Value at a zod issue path, or `undefined` if nothing is there. */
+function valueAt(input: unknown, path: PropertyKey[]): unknown {
+  let cursor = input;
+  for (const key of path) {
+    if (cursor === null || typeof cursor !== "object") return undefined;
+    cursor = (cursor as Record<PropertyKey, unknown>)[key];
+  }
+  return cursor;
+}
+
+/** Flatten a zod failure into the one-line-per-problem shape the archive lint prints.
+ *
+ * An absent field reads as "missing frontmatter field 'x'" rather than zod's "expected number,
+ * received undefined" — the lint is read by a human looking for what to go fix.
+ */
+export function issueLines(error: z.ZodError, input: unknown): string[] {
   return error.issues.map((i) => {
-    const where = i.path.length ? i.path.join(".") : "(root)";
+    const where = i.path.length ? i.path.map(String).join(".") : "(root)";
+    if (i.code === "invalid_type" && valueAt(input, i.path) === undefined) {
+      return `missing frontmatter field '${where}'`;
+    }
     return `frontmatter '${where}': ${i.message}`;
   });
 }
