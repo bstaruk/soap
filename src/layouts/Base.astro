@@ -1,0 +1,48 @@
+---
+import { NAV, REPO_URL, SITE_URL } from "../lib/site.ts";
+import "../styles/site.css";
+
+interface Props {
+  title: string;
+  /** Site-absolute path of this page — sets the canonical URL and the current nav item. */
+  path: string;
+  description?: string;
+}
+
+const { title, path, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · soap</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="alternate" type="application/atom+xml" title="Batches" href="/feed.xml" />
+    <link rel="canonical" href={`${SITE_URL}${path}`} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="/">soap</a>
+      <nav>
+        {
+          NAV.map((item) => (
+            <a href={item.href} aria-current={item.href === path ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        Brian's cold-process soap recipe book. <a href={REPO_URL}>source</a> ·
+        <a href="/feed.xml">feed</a>
+      </p>
+    </footer>
+  </body>
+</html>

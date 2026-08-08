@@ -1,0 +1,190 @@
+---
+import { roundHalfEven } from "../lib/calc.ts";
+import { loadEquipment, loadFragrances, loadMolds, loadStaples } from "../lib/data.ts";
+import Base from "../layouts/Base.astro";
+
+const molds = loadMolds();
+const fragrances = loadFragrances();
+const staples = loadStaples();
+const equipment = loadEquipment();
+
+const ml = (value: number) => `${roundHalfEven(value).toLocaleString("en-US")} ml`;
+
+const fragranceRows = Object.entries(fragrances.fragrances).map(([key, f]) => ({
+  key,
+  f,
+  ledger:
+    [...f.used]
+      .sort((a, b) => a.batch - b.batch)
+      .map((u) => `#${u.batch}: ${u.g} g`)
+      .join("; ") || "unused",
+}));
+
+const moldRows = Object.entries(molds.molds).map(([key, m]) => ({
+  key,
+  m,
+  dims: `${m.cavity_in.length}″ × ${m.cavity_in.width}″ × ${m.cavity_in.height}″`,
+  per: m.type === "cavity" ? " per cavity" : "",
+  cavity:
+    m.type === "cavity" ? `${ml(m.cavity_ml)} total · ${m.cavities} cavities` : ml(m.cavity_ml),
+}));
+
+const oilItems = Object.values(staples.oils).map((o) => ({
+  o,
+  range:
+    o.house_range_pct[0] === o.house_range_pct[1]
+      ? `${o.house_range_pct[0]}%`
+      : `${o.house_range_pct[0]}–${o.house_range_pct[1]}%`,
+}));
+
+const additiveItems = Object.values(staples.additives).map((a) => {
+  let rate = "";
+  if (a.rate_pct_of_oils !== undefined) rate = `${a.rate_pct_of_oils}% of oils`;
+  else if (a.rate_ml_per_1000g_oils !== undefined) {
+    rate = `${a.rate_ml_per_1000g_oils} ml per 1,000 g oils`;
+  } else if (a.rate_g_per_900g_oils !== undefined) {
+    rate = `${a.rate_g_per_900g_oils} g per 900 g oils`;
+  }
+  return { a, rate };
+});
+
+const current = equipment.current;
+const vessels = Object.values(current.vessels);
+const otherEquipment = [...current.tools, ...current.cutting, ...current.safety];
+---
+
+<Base
+  title="Inventory"
+  path="/inventory/"
+  description="Molds, fragrances, staple oils, and equipment on hand."
+>
+  <h1>Inventory</h1>
+  <p class="intro">
+    What's in the cabinet. Fragrance amounts are a running ledger, debited at each pour.
+  </p>
+
+  <h2>Fragrances</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Fragrance</th><th>Remaining · ledger</th><th>Scent · behavior</th></tr>
+      </thead>
+      <tbody>
+        {
+          fragranceRows.map(({ key, f, ledger }) => (
+            <tr id={key}>
+              <td>
+                <strong>{f.label}</strong>
+                <br />
+                <span class="muted">
+                  {f.brand} · {f.kind}
+                </span>
+              </td>
+              <td class="num">
+                {f.remaining_g} g <span class="muted">of {f.initial_g} g</span>
+                {f.status && <span class="warn"> {f.status}</span>}
+                <br />
+                <span class="muted">{ledger}</span>
+              </td>
+              <td>
+                {f.scent ?? ""}
+                <br />
+                <span class="muted">{f.behavior?.trim() ?? ""}</span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Molds</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Mold</th><th>Cavity</th><th>Fill ceiling</th></tr>
+      </thead>
+      <tbody>
+        {
+          moldRows.map(({ key, m, dims, per, cavity }) => (
+            <tr id={key}>
+              <td>
+                <strong>{m.label}</strong>
+                <br />
+                <span class="muted">
+                  {m.type} · {m.construction}
+                </span>
+              </td>
+              <td class="num">
+                {dims}
+                {per}
+                <br />
+                <span class="muted">{cavity}</span>
+              </td>
+              <td class="num">{m.max_fill_pct ?? "—"}%</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">
+    Cavity dimensions are measured inside the silicone; fill is proved by summed component volumes,
+    never the 0.4 rule — the rule is what overflowed Batch #3.
+  </p>
+
+  <h2>Staple oils</h2>
+  <ul>
+    {
+      oilItems.map(({ o, range }) => (
+        <li>
+          <strong>{o.sap_ref}</strong> — {o.role}{" "}
+          <span class="muted">house range {range} of oils</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Additives</h2>
+  <ul>
+    {
+      additiveItems.map(({ a, rate }) => (
+        <li>
+          <strong>{a.label}</strong> — {a.role}
+          {rate && <span class="muted"> house rate {rate}</span>}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Equipment</h2>
+  <ul>
+    {
+      vessels.map((v) => (
+        <li>
+          <strong>{v.label}</strong> — {v.use?.trim() ?? ""}
+        </li>
+      ))
+    }
+    {
+      otherEquipment.map((t) => (
+        <li>
+          <strong>{t.label}</strong>
+          {t.use ? ` — ${t.use.trim()}` : ""}
+        </li>
+      ))
+    }
+  </ul>
+  <details>
+    <summary>Superseded (kept on purpose — frozen recipes reference these)</summary>
+    <ul>
+      {
+        equipment.superseded.map((s) => (
+          <li>
+            <strong>{s.label}</strong> — {s.was} ({s.eras}); replaced by {s.replaced_by}
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+</Base>

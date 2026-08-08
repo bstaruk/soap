@@ -1,0 +1,12 @@
+---
+import type { Status } from "../lib/schema.ts";
+import { STATUS_LABEL } from "../lib/site.ts";
+
+interface Props {
+  status: Status;
+}
+
+const { status } = Astro.props;
+---
+
+<span class={`badge badge-${status}`}>{STATUS_LABEL[status]}</span>

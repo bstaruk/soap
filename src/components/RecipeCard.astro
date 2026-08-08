@@ -1,0 +1,136 @@
+---
+import type { Recipe } from "../lib/data.ts";
+import type { Fragrances, Molds, RecipeFrontmatter } from "../lib/schema.ts";
+import { cureMilestones, fmtG, oilDisplayName } from "../lib/site.ts";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  fm: RecipeFrontmatter;
+  molds: Molds;
+  fragrances: Fragrances;
+  /** Every recipe, for the parent/child lineage rows. */
+  recipes: Recipe[];
+}
+
+const { fm, molds, fragrances, recipes } = Astro.props;
+
+const mold = molds.molds[fm.mold];
+const ceiling = mold?.max_fill_pct;
+
+const blend = Object.entries(fm.oils).map(([name, pct]) => `${oilDisplayName(name)} ${pct}%`);
+
+const frags = fm.fragrance.map((f) => ({
+  label: fragrances.fragrances[f.id]?.label ?? f.id,
+  g: f.g,
+}));
+
+const parent = fm.parent === null ? undefined : recipes.find((r) => r.fm.batch === fm.parent);
+const children = recipes
+  .filter((r) => r.fm.parent === fm.batch)
+  .sort((a, b) => a.fm.batch - b.fm.batch);
+
+const cure = cureMilestones(fm.status, fm.cut);
+
+const dates = [fm.poured ? `poured ${fm.poured}` : "", fm.cut ? `cut ${fm.cut}` : ""].filter(
+  Boolean,
+);
+---
+
+<aside class="card">
+  <p class="card-status">
+    <StatusBadge status={fm.status} />
+    <span class="muted">
+      created <time class="dt-published" datetime={fm.created}>{fm.created}</time>{
+        dates.map((d) => <Fragment> · {d}</Fragment>)
+      }
+    </span>
+  </p>
+  <dl>
+    <dt>Mold</dt><dd>{mold?.label ?? fm.mold}</dd>
+
+    <dt>Blend</dt>
+    <dd>{blend.join(" · ")} — <span class="muted">{fm.profile} profile</span></dd>
+
+    <dt>Oils</dt><dd>{fmtG(fm.oils_g)}</dd>
+    <dt>Superfat</dt><dd>{fm.superfat_pct}%</dd>
+    <dt>Water</dt><dd>{fm.water_pct}% of oils</dd>
+
+    <dt>Lye (NaOH)</dt>
+    <dd>
+      {fmtG(fm.lye_g)}{
+        fm.lye_g_correct !== undefined ? (
+          <span class="warn">
+            {" "}
+            as made — the calculator's figure is {fmtG(fm.lye_g_correct)}; see the notes
+          </span>
+        ) : fm.soapcalc_confirmed ? (
+          <span class="ok"> SoapCalc-confirmed</span>
+        ) : null
+      }
+    </dd>
+
+    <dt>Fill</dt>
+    <dd>
+      {fm.fill_pct}% of cavity{ceiling && <span class="muted"> (ceiling {ceiling}%)</span>}{
+        fm.overflowed && <span class="warn"> overflowed</span>
+      }
+    </dd>
+
+    <dt>Fragrance</dt>
+    <dd>
+      {
+        frags.length === 0
+          ? "unscented"
+          : frags.map((f, i) => (
+              <Fragment>
+                {i > 0 ? " · " : ""}
+                <span class="p-ingredient">
+                  {f.label} {fmtG(f.g)}
+                </span>
+              </Fragment>
+            ))
+      }
+    </dd>
+
+    <dt>Yield</dt>
+    <dd>
+      {fm.yield?.bars ?? "?"} bars{fm.yield?.cut_in ? ` · cut at ${fm.yield.cut_in}″` : ""}
+    </dd>
+
+    {
+      parent && (
+        <Fragment>
+          <dt>Line</dt>
+          <dd>
+            descends from <a href={parent.url}>Batch #{parent.fm.batch}</a>
+          </dd>
+        </Fragment>
+      )
+    }
+
+    {
+      children.length > 0 && (
+        <Fragment>
+          <dt>Continued by</dt>
+          <dd>
+            {children.map((c, i) => (
+              <Fragment>
+                {i > 0 ? " · " : ""}
+                <a href={c.url}>Batch #{c.fm.batch}</a>
+              </Fragment>
+            ))}
+          </dd>
+        </Fragment>
+      )
+    }
+
+    {
+      cure && (
+        <Fragment>
+          <dt>Cure</dt>
+          <dd>{cure}</dd>
+        </Fragment>
+      )
+    }
+  </dl>
+</aside>

@@ -1,0 +1,70 @@
+---
+import StatusBadge from "../components/StatusBadge.astro";
+import { loadMolds, loadRecipes } from "../lib/data.ts";
+import type { Status } from "../lib/schema.ts";
+import { cureMilestones, recipeTitle, STATUS_LABEL, STATUS_ORDER } from "../lib/site.ts";
+import Base from "../layouts/Base.astro";
+
+const molds = loadMolds();
+const recipes = loadRecipes();
+
+const byStatus = new Map<Status, typeof recipes>();
+for (const r of recipes) {
+  const group = byStatus.get(r.fm.status) ?? [];
+  group.push(r);
+  byStatus.set(r.fm.status, group);
+}
+
+// An unknown status is a data error, not something to hide. The schema rejects one before this
+// can happen, but the build should still refuse rather than silently drop a batch.
+for (const status of byStatus.keys()) {
+  if (!STATUS_ORDER.includes(status))
+    throw new Error(`index: recipe with unknown status '${status}'`);
+}
+
+const sections = STATUS_ORDER.filter((status) => byStatus.has(status)).map((status) => ({
+  status,
+  items: [...byStatus.get(status)!]
+    .sort((a, b) => b.fm.batch - a.fm.batch)
+    .map((r) => {
+      const cure = cureMilestones(r.fm.status, r.fm.cut);
+      return {
+        recipe: r,
+        title: recipeTitle(r.body, r.slug),
+        meta: [
+          r.fm.poured ?? r.fm.created,
+          molds.molds[r.fm.mold]?.label ?? r.fm.mold,
+          `${r.fm.yield?.bars ?? "?"} bars`,
+          cure,
+        ].filter(Boolean),
+      };
+    }),
+}));
+---
+
+<Base
+  title="Batches"
+  path="/"
+  description="Cold-process soap recipes and how each batch turned out."
+>
+  <p class="intro">One page per batch: the recipe as made, and how it turned out.</p>
+  {
+    sections.map((section) => (
+      <section>
+        <h2>{STATUS_LABEL[section.status]}</h2>
+        <ul class="batches">
+          {section.items.map((item) => (
+            <li class="h-entry">
+              <span class="batch-no">#{item.recipe.fm.batch}</span>
+              <a class="u-url p-name" href={item.recipe.url}>
+                {item.title}
+              </a>
+              <StatusBadge status={item.recipe.fm.status} />
+              <span class="muted meta">{item.meta.join(" · ")}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>
