@@ -1,0 +1,12 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    // Node runs tools/lye.ts by stripping types, never by compiling them. Anything that
+    // needs codegen — enum, namespace, parameter properties — is a syntax error at the
+    // counter rather than a type error here, so ban it at the type layer instead.
+    "erasableSyntaxOnly": true,
+    "types": ["node"]
+  },
+  "include": [".astro/types.d.ts", "src/**/*", "tools/**/*", "*.ts", "*.mjs"],
+  "exclude": ["node_modules", "dist", "_site"]
+}
