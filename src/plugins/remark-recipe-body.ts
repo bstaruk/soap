@@ -1,9 +1,9 @@
 /** Prepare a recipe body for rendering: drop the leading H1, drop the legacy safety section.
  *
- * `tools/site.py` did both of these by string surgery on rendered HTML — partitioning on
- * `</h1>` to splice the data card in, and a regex over the Markdown source to swap the repeated
- * "Safety First" block for the shared disclaimer. Doing it on the syntax tree instead means the
- * page can render title -> card -> disclaimer -> body in plain component order.
+ * The hand-rolled generator this replaced did both by string surgery on rendered HTML —
+ * partitioning on `</h1>` to splice the data card in, and a regex over the Markdown source to swap
+ * the repeated "Safety First" block for the shared disclaimer. Doing it on the syntax tree instead
+ * means the page can render title -> card -> disclaimer -> body in plain component order.
  *
  * The title *value* is not set here: `recipeTitle()` in `src/lib/site.ts` owns that rule, because
  * the index and the feed need every recipe's title without rendering any of them. This plugin
@@ -41,7 +41,7 @@ export default function remarkRecipeBody() {
 
     // --- strip a legacy "## Safety First" section, up to the next level-2 heading ---
     // The trailing thematic break belongs to the section and goes with it, which is what the
-    // Python regex did by consuming every line up to the next `## `.
+    // old regex did by consuming every line up to the next `## `.
     const safetyIndex = tree.children.findIndex(
       (n) => n.type === "heading" && n.depth === 2 && toText(n).trim() === "Safety First",
     );

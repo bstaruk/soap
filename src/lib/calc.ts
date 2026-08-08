@@ -1,11 +1,12 @@
 /** The arithmetic. Lye, water, batter volume, mold fit, yield — and nothing else in the repo
  * computes any of them.
  *
- * A faithful port of `tools/lye.py`'s `compute` / `fit_oils` / `_yield` / `lye_solution_density`
- * / `resolve_oil_name`, kept structurally close on purpose so the two read as the same program.
+ * A faithful port of the Python calculator this replaced (`tools/lye.py`, in git history through
+ * 2026-08): `compute` / `fit_oils` / `_yield` / `lye_solution_density` / `resolve_oil_name`, kept
+ * structurally close on purpose so the two read as the same program and the diff is checkable.
  * Pure: no I/O, no filesystem, no clock.
  *
- * Two things the port must get right, because JavaScript's defaults are wrong for both:
+ * Two things the port had to get right, because JavaScript's defaults are wrong for both:
  *
  *   Rounding. Python's `round()` is half-to-even; `Math.round()` is half-up. Every lye weight in
  *   the archive went through Python's rule, and `kaolin_g` (oils × 2%) lands exactly on `.5` for

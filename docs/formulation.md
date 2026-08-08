@@ -20,7 +20,7 @@ Olive 62% / coconut 28% / castor 10%, superfat bumped to 6%. A frequently-used h
 - **Coconut** is the cleansing/lather dial — 18–28%. Below 18, lather goes flat; **above ~30% it reads as a degreaser on skin.** 28% is the house ceiling and it's the reason the hand bar runs 6% superfat.
 - **Castor** stays pinned at **10%**. It's a small lever with real effect on lather creaminess; above ~15% bars turn sticky. No batch has had a reason to move it.
 - **Superfat** is the free-oil safety margin — 5% for body, 6% for high-coconut. Higher is milder but softer and shortens shelf life; lower is harder and more cleansing but less forgiving of any lye error. On a 1g scale, 5–6% also keeps a comfortable margin against rounding.
-- **Water** at 38% of oils is the house constant. More water is a fluider batter and a longer cure; less accelerates trace and firms faster. It also moves the fill math, so it isn't a free knob — [`tools/lye.py`](../tools/lye.py) re-checks fit whenever it changes.
+- **Water** at 38% of oils is the house constant. More water is a fluider batter and a longer cure; less accelerates trace and firms faster. It also moves the fill math, so it isn't a free knob — [`tools/lye.ts`](../tools/lye.ts) re-checks fit whenever it changes.
 
 ## Fragrance
 
@@ -39,9 +39,9 @@ Load rates, all as a percentage of oil weight, from what's actually been poured:
 ## How `formulate` uses this
 
 1. **Mold + use case → blend and superfat.** Hand-washing picks the hand bar; a body/shower bar picks the body bar. A new use case is a real design conversation, not a default.
-2. **Mold + target fill → oil weight**, via `tools/lye.py --fit`. Aim for **~92–95%** of a mold's ceiling — full bars, real margin against overflow. Never design to 100%.
+2. **Mold + target fill → oil weight**, via `tools/lye.ts --fit`. Aim for **~92–95%** of a mold's ceiling — full bars, real margin against overflow. Never design to 100%.
 3. **Fragrance choice → check the ledger** for amount, vanillin, and behavior; set the load rate to taste and to what the bottle holds.
-4. **Everything → `tools/lye.py`** for the actual weights, fill, and yield. Never by hand.
+4. **Everything → `tools/lye.ts`** for the actual weights, fill, and yield. Never by hand.
 5. **Brian cross-checks on SoapCalc.** Only then is it `Ready`.
 
 ## Room to grow

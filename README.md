@@ -24,7 +24,7 @@ A recipe moves `draft → ready → curing → cured`, with `abandoned` and `fai
 
 ## The calculator
 
-[`tools/lye.py`](tools/lye.py) is the heart of it — no dependencies, just Python 3.11+. It computes the lye, the water, whether the batter will fit the mold, and the bar yield. Two things make it trustworthy:
+[`tools/lye.ts`](tools/lye.ts) is the heart of it — TypeScript that Node runs directly, no build step (Node 22.18+, which strips the types and executes the file). It computes the lye, the water, whether the batter will fit the mold, and the bar yield. Two things make it trustworthy:
 
 - **The lye math is pinned to SoapCalc.** The saponification table ([`reference/sap-values.toml`](reference/sap-values.toml)) uses SoapCalc's values, so the calculator and my cross-check share a source and actually agree. It's the first opinion; SoapCalc is the second; a recipe isn't Ready until both match.
 - **Mold fit is proved by volume, not a rule of thumb.** The usual "cubic inches × 0.4" rule over-predicts my water-heavy recipes by ~10% — it's what once overflowed a batch onto the mold. The calculator sums real component volumes against the real cavity instead.
@@ -32,7 +32,7 @@ A recipe moves `draft → ready → curing → cured`, with `abandoned` and `fai
 It re-proves itself on every run against six real batches:
 
 ```
-$ python3 tools/lye.py --self-check
+$ node tools/lye.ts --self-check
 ```
 
 Every batch reproduces its SoapCalc-confirmed lye weight, the one historical overflow is correctly flagged, and every fragrance's remaining amount reconciles against its usage ledger.
@@ -40,13 +40,17 @@ Every batch reproduces its SoapCalc-confirmed lye weight, the one historical ove
 To design a batch by hand, or see what fills a mold:
 
 ```
-$ python3 tools/lye.py --mold nurture-5lb --oils 1600 --blend olive=62,coconut=28,castor=10 --superfat 6 --water 38 --fragrance 44
-$ python3 tools/lye.py --fit bb-6cav-oval --blend olive=72,coconut=18,castor=10 --superfat 5 --target-fill 93
+$ node tools/lye.ts --mold nurture-5lb --oils 1600 --blend olive=62,coconut=28,castor=10 --superfat 6 --water 38 --fragrance 44
+$ node tools/lye.ts --fit bb-6cav-oval --blend olive=72,coconut=18,castor=10 --superfat 5 --target-fill 93
 ```
+
+It is not dependency-free — Node has no TOML parser, so reading the SAP table takes one small library. What it does keep is the part that matters: it is the only thing in the repo that does lye arithmetic, it runs without a compile, and it re-proves itself every time you run it.
 
 ## The site
 
-The whole archive publishes to **[soap.brian.staruk.net](https://soap.brian.staruk.net)** — a no-JS static site rendered straight from these files by [`tools/site.py`](tools/site.py), a ~350-line hand-rolled generator (the recipes were already frontmatter + markdown; a real SSG would just want to own the layout). The interesting part is the pipeline, not the pages: before anything deploys, CI runs the calculator's self-check and [`tools/check.py`](tools/check.py), which re-derives every recipe's frozen lye and fill numbers through the calculator and cross-checks fragrance weights against the inventory ledger. If the SAP table drifts or a number was ever hand-scaled, the build goes red instead of publishing. The site is a projection of the repo; the repo has to prove itself first.
+The whole archive publishes to **[soap.brian.staruk.net](https://soap.brian.staruk.net)** — a no-JS static site built with [Astro](https://astro.build) from these same files. The recipes are already frontmatter + markdown and the inventory is already TOML, so the site is a projection of the repo rather than a second copy of it: the pages read through the same `src/lib/data.ts` the calculator does.
+
+The interesting part is the pipeline, not the pages. Before anything deploys, CI runs the calculator's self-check and [`tools/check.ts`](tools/check.ts), which re-derives every recipe's frozen lye and fill numbers through the calculator and cross-checks fragrance weights against the inventory ledger. If the SAP table drifts or a number was ever hand-scaled, the build goes red instead of publishing. Then [`tools/check-site.ts`](tools/check-site.ts) checks the built output: that no published URL moved, that no feed entry changed identity, and that a recipe page still prints with its safety line — because a recipe gets printed and carried to a pot of lye, and a collapsed `<details>` prints nothing.
 
 ## Repo map
 
@@ -56,8 +60,10 @@ The whole archive publishes to **[soap.brian.staruk.net](https://soap.brian.star
 - **`inventory/`** — molds, fragrances, staples, equipment. What's actually in the cabinet.
 - **`recipes/`** — one file per batch, the durable archive. Lifecycle and template in [`recipes/README.md`](recipes/README.md).
 - **`reference/sap-values.toml`** — saponification values, pinned to SoapCalc.
-- **`tools/lye.py`** — the calculator.
-- **`tools/site.py`** / **`tools/check.py`** — the static site and the CI lint that guards it (below).
+- **`src/lib/`** — the shared TypeScript core: the arithmetic, the schemas, and the loaders both the tools and the site read through.
+- **`tools/lye.ts`** — the calculator.
+- **`tools/check.ts`** / **`tools/check-site.ts`** — the CI lints that guard the archive and the built site (below).
+- **`src/pages/`**, **`src/components/`** — the Astro site.
 
 ## A safety note
 

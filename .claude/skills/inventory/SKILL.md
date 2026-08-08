@@ -7,7 +7,7 @@ description: Keep the cabinet honest. Add or retire a mold, log a new fragrance 
 
 The write lane for what's on hand. `formulate` reads this data and `retro` debits the fragrance ledger at pour; this skill handles every *other* change to stock — new arrivals, retirements, re-measurements, and new validated reference data. It exists because inventory drifts silently: the All-Clad bowls sat listed two method-eras after they were retired, and a wrong "remaining" is how Batch #5's fragrance went missing.
 
-All inventory and reference data is **TOML** (read by the zero-dependency calculator). After any change that touches derived numbers, run `python3 tools/lye.py --self-check` to prove nothing drifted.
+All inventory and reference data is **TOML** (read by the calculator, which is the only thing in the repo that does lye arithmetic). After any change that touches derived numbers, run `node tools/lye.ts --self-check` to prove nothing drifted.
 
 ## Molds — `inventory/molds.toml`
 
@@ -52,4 +52,4 @@ Adding an oil to the palette is the highest-stakes inventory change, because it 
 - **Never deplete fragrance for a batch here.** Pour depletion is `retro`'s, at pour, so stock and batches stay in one lane.
 - **Never guess a SAP value or a supplier spec.** Verify against SoapCalc; leave unknowns `"unknown"`.
 - **Retire, don't erase.** Superseded equipment and molds stay as history because frozen recipes still reference them.
-- **Prove it after.** `python3 tools/lye.py --self-check` after any change to derived data.
+- **Prove it after.** `node tools/lye.ts --self-check` after any change to derived data.
