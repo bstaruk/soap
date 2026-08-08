@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from "astro:content";
+
+import RecipeCard from "../../components/RecipeCard.astro";
+import SafetyDisclaimer from "../../components/SafetyDisclaimer.astro";
+import { loadFragrances, loadMolds, loadRecipes } from "../../lib/data.ts";
+import { recipeTitle, STATUS_LABEL } from "../../lib/site.ts";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("recipes");
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const molds = loadMolds();
+const fragrances = loadFragrances();
+const recipes = loadRecipes();
+
+const recipe = recipes.find((r) => r.slug === entry.id);
+if (!recipe) throw new Error(`no recipe file for collection entry '${entry.id}'`);
+
+const fm = recipe.fm;
+const title = recipeTitle(recipe.body, recipe.slug);
+---
+
+<Base
+  title={`Batch #${fm.batch} · ${title}`}
+  path={recipe.url}
+  description={`Batch #${fm.batch} — ${STATUS_LABEL[fm.status]}.`}
+>
+  <article class="h-recipe recipe">
+    <h1>{title}</h1>
+    <RecipeCard fm={fm} molds={molds} fragrances={fragrances} recipes={recipes} />
+    <SafetyDisclaimer />
+    <Content />
+  </article>
+</Base>

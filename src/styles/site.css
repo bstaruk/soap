@@ -1,0 +1,310 @@
+/* soap.brian.staruk.net — one plain stylesheet, no JS anywhere on the site.
+   Deliberately spare: this is scaffolding for a real design system, so the :root block below
+   is the seam a redesign hooks into and the class vocabulary is stable on purpose. */
+
+:root {
+  --bg: #faf8f4;
+  --fg: #2b2722;
+  --muted: #6f6659;
+  --line: #ddd5c7;
+  --link: #7a4a21;
+  --measure: 44rem;
+  --font: ui-serif, Georgia, "Times New Roman", serif;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* reset */
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* typography and layout */
+
+body {
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+  max-width: var(--measure);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.site-header,
+.badge,
+.batch-no,
+dt,
+th,
+.meta,
+.card-status {
+  font-family: var(--font-ui);
+}
+
+h1 {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 1.5rem 0 0.5rem;
+}
+h2 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.5rem;
+}
+h3 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.25rem;
+}
+p,
+ul,
+ol {
+  margin: 0.75rem 0;
+}
+
+a {
+  color: var(--link);
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2rem 0;
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+.site-header nav a {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.site-header nav a[aria-current] {
+  color: var(--link);
+}
+
+.site-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.intro,
+.muted {
+  color: var(--muted);
+}
+.ok,
+.warn {
+  font-size: 0.9em;
+}
+.warn {
+  font-weight: 600;
+}
+
+/* status badges — border and text, not coloured pills. The per-status classes stay in the
+   markup as hooks for a design system that wants to tell them apart at a glance. */
+
+.badge {
+  display: inline-block;
+  padding: 0 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  vertical-align: 0.1em;
+}
+
+/* batch index */
+
+.batches {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+.batches li {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.batches .batch-no {
+  display: inline-block;
+  min-width: 2.2rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.batches a {
+  font-weight: 600;
+}
+.batches .meta {
+  display: block;
+  margin-left: 2.2rem;
+  font-size: 0.85rem;
+}
+
+/* recipe data card */
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.card-status {
+  margin: 0 0 0.5rem;
+}
+.card dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.2rem 1rem;
+}
+.card dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* tables */
+
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+}
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45rem 0.75rem 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+td.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* body prose */
+
+.recipe blockquote,
+.doc blockquote {
+  margin: 1rem 0;
+  padding: 0.1rem 1rem;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+
+details {
+  margin: 1rem 0;
+}
+summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.safety {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+.safety summary {
+  font-family: var(--font-ui);
+}
+.safety-print {
+  display: none;
+}
+
+/* print: the recipe page IS the kitchen sheet */
+
+@media print {
+  body {
+    max-width: none;
+    font-size: 11pt;
+    background: #fff;
+    color: #000;
+  }
+  .site-header,
+  .site-footer {
+    display: none;
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  .card {
+    border: 1px solid #999;
+    background: #fff;
+    break-inside: avoid;
+  }
+  .badge {
+    border: 1px solid #000;
+    color: #000;
+    background: #fff !important;
+  }
+  table,
+  blockquote {
+    break-inside: avoid;
+  }
+  h2 {
+    break-after: avoid;
+  }
+  /* a closed <details> doesn't print its contents, so the kitchen sheet gets the one-liner */
+  .safety {
+    display: none;
+  }
+  .safety-print {
+    display: block;
+    font-size: 9pt;
+  }
+}
