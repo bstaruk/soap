@@ -1,0 +1,16 @@
+# Prettier formats src/, tools/, and the config files. Nothing else.
+
+node_modules/
+dist/
+_site/
+.astro/
+
+# The archive is frozen. A formatter run over recipes/ would reflow the ingredient
+# tables and rewrite history that a poured batch is supposed to keep verbatim, so all
+# Markdown is off limits — docs/ and the READMEs too, since CLAUDE.md's "do not manually
+# hard-wrap prose" convention is not something Prettier knows how to respect.
+*.md
+
+# TOML is hand-commented data with load-bearing layout (the SAP table's leading array
+# has a comment explaining why it sits above the first [table] header). Leave it alone.
+*.toml

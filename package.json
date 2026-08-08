@@ -1,0 +1,36 @@
+{
+  "name": "soap",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A solo hobbyist's cold-process soap workflow — the calculator, the archive lint, and the site.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "lye": "node tools/lye.ts",
+    "archive": "node tools/check.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "astro": "7.2.0",
+    "smol-toml": "1.7.1",
+    "yaml": "2.9.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@types/node": "24.13.3",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  }
+}
