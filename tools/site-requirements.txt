@@ -1,4 +1,0 @@
-# Build-time dependencies for tools/site.py and tools/check.py — the SITE toolchain only.
-# The kitchen calculator (tools/lye.py) deliberately stays zero-dependency stdlib.
-markdown==3.7
-pyyaml==6.0.2
