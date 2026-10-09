@@ -1,6 +1,6 @@
 ---
 batch: 7
-status: draft
+status: ready
 mold: bb-6cav-oval
 profile: body
 parent: null
@@ -12,7 +12,7 @@ superfat_pct: 7
 water_pct: 38
 oils: { olive: 45, coconut_76: 20, shea_butter: 15, cocoa_butter: 10, castor: 10 }
 lye_g: 71
-soapcalc_confirmed: false
+soapcalc_confirmed: true
 fill_pct: 94.1
 fragrance: []
 yield: { bars: 6, cut_in: null }
@@ -21,7 +21,7 @@ yield: { bars: 6, cut_in: null }
 # Shea & Cocoa Butter Bar — Unscented
 
 ### Brambleberry 6-Cavity Oval — Cold Process
-### Batch #7 — Draft
+### Batch #7 — Ready
 
 > **Mold:** Brambleberry 6-Cavity Oval (3.5" × 2.5" × 1" per cavity)
 > **Yield:** 6 bars | **Cure:** 6–8 weeks (4 minimum) | **Active:** ~1 hour
@@ -38,7 +38,7 @@ yield: { bars: 6, cut_in: null }
 | Cocoa butter | 54g | 10% — first batch with cocoa butter; **unrefined (not deodorized)**, because it is the bar's only scent |
 | Castor oil | 54g | 10% — lather |
 | Distilled water | 204g | 38% of oils |
-| Sodium hydroxide (lye) | 71g | 45/20/15/10/10 @ 7% SF — **confirm on SoapCalc before pouring** |
+| Sodium hydroxide (lye) | 71g | SoapCalc-confirmed (71.49); 45/20/15/10/10 @ 7% SF, 536g oils |
 | Sodium lactate | 6ml | Into the cooled lye solution |
 | Kaolin clay | 11g | Stick-blend into the oils before the lye |
 | Fragrance | none | Unscented by design |
@@ -47,7 +47,7 @@ yield: { bars: 6, cut_in: null }
 >
 > **SoapCalc entries for the cross-check:** Olive Oil 45% · Coconut Oil, 76 deg 20% · Shea Butter 15% (not "Shea Oil, fractionated") · Cocoa Butter 10% · Castor Oil 10% — 536g oils, 7% superfat, water as 38% of oils. The calculator gives 71.49g before rounding.
 >
-> **Lye confirmed on SoapCalc:** ___g (fill in when you check).
+> **Lye confirmed on SoapCalc:** 71.49g on 2026-10-09, rounded to 71g.
 
 ## Instructions
 
