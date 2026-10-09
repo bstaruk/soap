@@ -30,6 +30,36 @@ role = "Creamy, stable bubbles. Small lever, real effect."
 house_range_pct = [10, 10]
 ceiling_note = "Pinned at 10% across every batch to date. Above ~15% bars turn sticky."
 
+# The two butters. Ordered from Bramble Berry on 2026-10-09 and not yet arrived: 2 × "Shea Butter -
+# 1 lb" and 1 × "Organic Cocoa Butter Wafers - 1 lb". Unlike the bulk oils above they are bought by
+# the pound, so they can run out — check what's left before sizing a loaf. When the order arrives,
+# drop the "on order" wording and confirm each grade from the label.
+
+[oils.shea_butter]
+sap_ref = "shea_butter"
+grade = """
+Bramble Berry "Shea Butter" — their standard shea, sold separately from "Raw Shea Butter". Whether \
+the label says refined is not yet confirmed. Either grade takes the same lye; "Shea Oil, \
+fractionated" does not and is not a substitute."""
+role = """
+Conditioning and a creamy lather, with hardness the coconut doesn't have to supply. On order since \
+2026-10-09; unproven until Batch #7 pours."""
+house_range_pct = [15, 15]
+ceiling_note = "15% is Batch #7's planned rate, not a proven range — no batch has poured with shea yet."
+
+[oils.cocoa_butter]
+sap_ref = "cocoa_butter"
+grade = """
+Bramble Berry "Organic Cocoa Butter Wafers" — the natural one, not their "Deodorized Cocoa Butter \
+Wafers". Unrefined matters here: in an unscented bar it is the only scent."""
+role = """
+Hardness, and the bar's only scent when no fragrance goes in. On order since 2026-10-09; unproven \
+until Batch #7 pours."""
+house_range_pct = [10, 10]
+ceiling_note = """
+10% is Batch #7's planned rate, not a proven range. The usual guidance is to stay at or under ~15% \
+— above that bars turn brittle and lather drops — but that is general advice, not house evidence."""
+
 [lye.sodium_hydroxide]
 label = "Sodium hydroxide (NaOH) pellets"
 grade = "Food grade, 99%+ pure."

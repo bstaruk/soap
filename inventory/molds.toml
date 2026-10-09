@@ -58,7 +58,11 @@ Batch #2 fit at 98.4%, Batch #5 at 95.3%. Small open cavities dome less forgivin
 no length to absorb the excess — so the ceiling stays at the rim."""
 notes = """
 Brambleberry recommends 1 tsp sodium lactate per lb of oils for clean release. Individual cavities \
-cool fast; insulate or gel goes uneven (cosmetic only). No cutting — bars are individually molded."""
+cool fast; insulate or gel goes uneven (cosmetic only). No cutting — bars are individually molded. \
+A second, identical mold was ordered on 2026-10-09 so two can run at once; it has not arrived. \
+Measure its cavities when it does — the fill math assumes it matches this one. `cavities` and \
+`cavity_ml` here stay per mold: a batch poured across both needs its own sizing through the \
+calculator, never this entry doubled."""
 
 # The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
 # cut freehand.
