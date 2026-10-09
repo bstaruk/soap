@@ -59,10 +59,28 @@ no length to absorb the excess — so the ceiling stays at the rim."""
 notes = """
 Brambleberry recommends 1 tsp sodium lactate per lb of oils for clean release. Individual cavities \
 cool fast; insulate or gel goes uneven (cosmetic only). No cutting — bars are individually molded. \
-A second, identical mold was ordered on 2026-10-09 so two can run at once; it has not arrived. \
-Measure its cavities when it does — the fill math assumes it matches this one. `cavities` and \
-`cavity_ml` here stay per mold: a batch poured across both needs its own sizing through the \
-calculator, never this entry doubled."""
+Two of these are on hand; the second was bought on 2026-10-09. This entry is ONE mold — a batch \
+poured across both uses `bb-6cav-oval-x2`."""
+
+# Both oval molds poured as one batch. Not a different product — the same mold twice — but the
+# calculator checks a recipe against a single `cavity_ml`, so a 12-bar batch needs an entry whose
+# volume is the pair's. Single-mold batches (#2, #5) keep pointing at `bb-6cav-oval`.
+[molds.bb-6cav-oval-x2]
+label = "Brambleberry 6 Cavity Oval Silicone Mold × 2"
+type = "cavity"
+construction = "Two single-piece silicone molds, poured as one batch"
+cavities = 12
+cavity_in = { length = 3.5, width = 2.5, height = 1.0 }
+cavity_ml = 1720.6
+cavity_ml_each = 143.4
+lid = false
+max_fill_pct = 100
+fill_evidence = """
+No batch has been poured across both yet. The ceiling is carried over from the single mold, where \
+Batches #2 and #5 both fit under the rim — each cavity fills exactly as it does there."""
+notes = """
+The second mold's cavities are taken to match the first. Pour the two molds in alternation so \
+neither is left to be filled from the thickened bottom of the pot."""
 
 # The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
 # cut freehand.
