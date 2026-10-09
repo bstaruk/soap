@@ -61,6 +61,34 @@ density_g_per_ml = 0.961
 soapcalc_entry = "Castor Oil"
 notes = "House blends run it at 10% of oils for lather. Above ~15% it turns bars sticky."
 
+# Added 2026-10-09 for Batch #7. SoapCalc stores each oil's KOH SAP and converts it with × 40/56.1;
+# its oil panel shows the result to three decimals. These two are that conversion kept to four:
+#   Shea Butter  — KOH 0.179 → NaOH 0.1276 (panel shows 0.128)
+#   Cocoa Butter — KOH 0.194 → NaOH 0.1383 (panel shows 0.138)
+# Neither is pinned by a SoapCalc-confirmed batch yet — `--self-check` gains one when a recipe
+# using them is confirmed.
+
+[oils.shea_butter]
+label = "Shea butter"
+naoh_sap = 0.1276
+density_g_per_ml = 0.90
+soapcalc_entry = "Shea Butter"
+notes = """
+Refined and unrefined share SoapCalc's single "Shea Butter" entry. "Shea Oil, fractionated" is a \
+SEPARATE entry with a different SAP value — the liquid fraction is not a drop-in substitute and \
+changes the lye. Density is for melted butter at ~40°C (supplier specs run 0.89–0.91), which is \
+how it goes into the pot."""
+
+[oils.cocoa_butter]
+label = "Cocoa butter"
+naoh_sap = 0.1383
+density_g_per_ml = 0.895
+soapcalc_entry = "Cocoa Butter"
+notes = """
+Unrefined (natural) and deodorized share SoapCalc's single "Cocoa Butter" entry — the grade \
+changes the scent and colour, not the lye. Density is for melted butter at 40°C (European \
+Pharmacopoeia relative density, about 0.895)."""
+
 # Non-saponifying components. They contribute no lye demand but real volume, which is what the
 # mold fill check needs — Batch #3 overflowed on volume the lye math never saw.
 
