@@ -1,6 +1,6 @@
 # House Method — Cold Process
 
-This is the current process, the one every new recipe renders from. It is the **refined era** that landed in Batch #4 and has held since: clay stick-blended into the oils up front, the 6qt stockpot on induction with no transfer step, an IPA spritz on the poured top, and — new as of Batch #6 — the miter box at a 1" cut.
+This is the current process, the one every new recipe renders from. It is the **refined era** that landed in Batch #4 and has held since: clay stick-blended into the oils up front, the 6qt stockpot on induction with no transfer step, an IPA spritz on the poured top, and — new as of Batch #6 — the miter box at a 1" cut, with hand soap getting a double wavy cut.
 
 Earlier batches describe an older process (All-Clad bowls, a post-trace clay slurry, a hand-stir for fragrance, a freehand knife). That is not drift to fix — a poured recipe is frozen history. See [`recipes/README.md`](../recipes/README.md).
 
@@ -30,7 +30,8 @@ The house defaults, derived from the batches to date. A recipe may depart from t
 - **Kaolin clay:** 2% of oil weight, stick-blended into the oils.
 - **Sodium lactate:** ~1 tsp per pound of oils (the calculator gives the millilitres), into the *cooled* lye solution.
 - **Temperature:** combine oils and lye both in the **105–120°F** window, within ~10°F of each other.
-- **Cut:** 1" bars in the miter box.
+- **Time in the mold:** 24–48 hours for most batches; **3 days for high-olive batches** (the Bastille blends). Batch #5 was forced out of the ovals after more than 48 hours while still soft and came out misshapen; Batch #6 sat 3 days and released clean.
+- **Cut:** 1" bars in the miter box. **Hand soap gets the double wavy cut** — 1" slices with the wavy cutter, each slice then halved the long way with the wavy cutter, for thick hotel-style pieces about 1" × 1.75" × 2.5". Batch #6 is where it started.
 
 ## The process
 
@@ -64,14 +65,14 @@ Glasses and gloves on. Ventilation on. Pre-weigh every ingredient into its own c
 
 ### 7. Pour, spritz, rest
 1. Pour into the prepped mold; tap to release bubbles; smooth the top.
-2. Spritz the top with 99% isopropyl alcohol to prevent soda ash.
+2. Spritz the top with 99% isopropyl alcohol to prevent soda ash (90% works too; avoid 70%).
 3. On the Nurture mold, seat the clear acrylic lid. On the open molds, bridge cardboard over the top on risers so nothing touches the soap.
-4. Leave undisturbed **24–48 hours** (a few days is fine).
+4. Leave undisturbed **24–48 hours** — **3 days for a high-olive batch** (a few days more is always fine).
 
 ### 8. Unmold and cut
-1. Wait until it's firm and not sticky. Give it more time if it's soft.
+1. Wait until it's firm and not sticky. Give it more time if it's soft — **never force a soft bar out**. It warps and tears, and it can't be undone.
 2. Loaf: remove the wood sides, lift the liner, peel it off the loaf. Oval: flex the silicone and pop each bar out.
-3. Loaf: cut at **1" in the miter box** with the bench scraper. Oval: no cutting.
+3. Loaf: cut at **1" in the miter box** with the bench scraper. **Hand soap:** cut 1" slices with the **wavy cutter**, then halve each slice the long way with the wavy cutter. Oval: no cutting.
 4. **The cure clock starts at the cut**, not the pour.
 
 ### 9. Cure *(4–6 weeks)*
