@@ -42,7 +42,7 @@ These are the ones that keep the soap from burning someone.
 - **No skill asserts a recipe is lye-safe on its own authority.** The calculator shows its work; it does not get a vote. Only `soapcalc_confirmed: true` — set by Brian, after his own cross-check at [SoapCalc](https://www.soapcalc.net) — may move a recipe to `Ready`. A skill that claims a recipe is safe has broken the one guard that matters.
 - **The SAP table is pinned to SoapCalc.** Changing `reference/sap-values.toml` invalidates the cross-check behind every `Ready` recipe. It is a deliberate act with a re-verification cost, never a tidy-up.
 - **Inventory depletes at pour, never at `Ready`.** A recipe that was never made consumed nothing.
-- **Mold fit is proved by volume, never by a rule of thumb.** The 0.4 rule (cubic inches × 0.4 = oz of oils) over-predicts these recipes by ~10% because they run a lot of water; it is what overflowed Batch #3. The calculator sums real component volumes against real cavity volume.
+- **Mold fit is proved by volume, never by a rule of thumb.** The 0.4 rule (cubic inches × 0.4 = oz of oils) over-predicts these recipes by ~10% because they run a lot of water; it is what overflowed Batch #3. The calculator sums real component volumes against real cavity volume — and that cavity volume is **measured with water on the scale**, never computed from a mold's dimensions. The ovals were entered as rectangles at 143.4 mL per cavity and actually hold about 120g; that is what overfilled Batch #7.
 - **Never guess at a number that belongs on a scale.** An unrecorded fragrance weight is an open question, not an estimate to quietly fill in.
 
 ## Conventions
