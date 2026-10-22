@@ -59,10 +59,11 @@ url = "https://moldmarket.com/collections/soap-crafts-supplies/products/soap-cut
 capacity_in = { width = 4.625, height = 3.5 }
 cuts_in = [1.0, 2.0]
 includes = ["bench scraper (flat cutter)", "wavy cutter"]
-since = "Batch #6 (2026-07-17)"
-unproven = """
-Has never cut a loaf. Batch #6 is the first and is still in the mold as of 2026-07-17. Both loaf \
-molds clear it on paper; confirm at the cut."""
+since = "Batch #6 (2026-07-20)"
+note = """
+Proven on Batch #6: the Nurture loaf cut cleanly at 1" with the wavy cutter, each slice then halved \
+the long way with the wavy cutter — the house cut for hand soap. The 10" loaf clears it on paper \
+but has not been cut in it yet."""
 
 [[current.safety]]
 label = "Safety glasses"
@@ -76,6 +77,9 @@ note = "Non-negotiable when handling lye."
 label = "99% isopropyl alcohol"
 use = "Spritz the poured top to prevent soda ash."
 since = "Batch #4 (2026-06-02)"
+note = """
+90% works too: Batch #7 was spritzed with 90% and showed no ash at unmold. Avoid 70% — the extra \
+water can spot the tops."""
 
 [[superseded]]
 label = "All-Clad mixing bowl, 3qt"

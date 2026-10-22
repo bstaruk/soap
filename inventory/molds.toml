@@ -76,11 +76,13 @@ cavity_ml_each = 143.4
 lid = false
 max_fill_pct = 100
 fill_evidence = """
-No batch has been poured across both yet. The ceiling is carried over from the single mold, where \
+Batch #7 was the first pour across both, at 94.0% computed: all 12 cavities filled under the rim, \
+and both molds released cleanly at ~41h. The ceiling is carried over from the single mold, where \
 Batches #2 and #5 both fit under the rim — each cavity fills exactly as it does there."""
 notes = """
-The second mold's cavities are taken to match the first. Pour the two molds in alternation so \
-neither is left to be filled from the thickened bottom of the pot."""
+The second mold's cavities are taken to match the first, and Batch #7 bore that out — both filled \
+and released the same. Pour the two molds in alternation so neither is left to be filled from the \
+thickened bottom of the pot."""
 
 # The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
 # cut freehand.
@@ -91,6 +93,8 @@ capacity_in = { width = 4.625, height = 3.5 }
 cut_thicknesses_in = [1.0, 2.0]
 includes = ["bench scraper (flat cutter)", "wavy cutter"]
 clears = { nurture-5lb = true, bb-10in-loaf = true }
-unproven = """
-As of 2026-07-17 the miter box has never cut a loaf. Batch #6 is the first — its file describes the \
-1" cut as a plan, not a record. Confirm the fit at that cut and record it in the batch Outcome."""
+evidence = """
+Batch #6 (Nurture 5 lb loaf) was the first loaf through it, cut 2026-07-20 at 1" with the wavy \
+cutter, then each slice halved the long way with the wavy cutter again — ~36 pieces, about \
+1" × 1.75" × 2.5". That double wavy cut is now the house cut for hand soap. The 10" loaf has not \
+been cut in it yet."""
