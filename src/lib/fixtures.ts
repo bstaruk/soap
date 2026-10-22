@@ -1,9 +1,12 @@
-/** Six real batches, their recorded numbers, and what actually happened.
+/** Seven real batches, their recorded numbers, and what actually happened.
  *
  * The lye assertions prove the SAP table against SoapCalc-confirmed weights; the fill assertions
- * prove the volume model gets fit-vs-overflow right — including the one batch that overflowed.
+ * prove the volume model gets fit-vs-overflow right — including the batches that overflowed. The
+ * oval batches (#2, #5, #7) were recorded as fitting against a cavity volume computed from the
+ * mold's dimensions; against the cavity measured with water on 2026-10-22 they are all oversized,
+ * and Batch #7's leftover batter is the evidence.
  *
- * This is a regression guard, not the whole proof of the port: the six batches only exercise one
+ * This is a regression guard, not the whole proof of the port: the seven batches only exercise one
  * of the five places the calculator rounds, which is why `roundHalfEven` has its own unit test.
  */
 
@@ -44,8 +47,8 @@ export const SELF_CHECK: Fixture[] = [
     fragranceG: 36,
     moldKey: "bb-6cav-oval",
     recordedLye: 74,
-    expectFit: true,
-    note: "first oval",
+    expectFit: false,
+    note: "first oval; oversized against the measured cavity",
   },
   {
     batch: 3,
@@ -80,8 +83,8 @@ export const SELF_CHECK: Fixture[] = [
     fragranceG: 11,
     moldKey: "bb-6cav-oval",
     recordedLye: 75,
-    expectFit: true,
-    note: "SoapCalc-confirmed 75.18",
+    expectFit: false,
+    note: "SoapCalc-confirmed 75.18; oversized against the measured cavity",
   },
   {
     batch: 6,
@@ -93,18 +96,32 @@ export const SELF_CHECK: Fixture[] = [
     moldKey: "nurture-5lb",
     recordedLye: 223,
     expectFit: true,
-    note: "SoapCalc-confirmed 222.80; still in mold",
+    note: "SoapCalc-confirmed 222.80",
+  },
+  {
+    batch: 7,
+    blend: { olive: 45, coconut_76: 20, shea_butter: 15, cocoa_butter: 10, castor: 10 },
+    oilsG: 1071,
+    superfatPct: 7,
+    waterPct: 38,
+    fragranceG: 0,
+    moldKey: "bb-6cav-oval-x2",
+    recordedLye: 143,
+    expectFit: false,
+    note: "SoapCalc-confirmed 142.85; first butters; overfilled both ovals with batter left over",
   },
 ];
 
-/** The fill percentages the Python calculator produced, to one decimal — the same figures the
- *  archive records in frontmatter. Asserted exactly so a drift in the volume model shows up as a
+/** The fill percentages the calculator produces, to one decimal — the same figures the archive
+ *  records in frontmatter (`fill_pct`, or `fill_pct_correct` for the oval batches sized before the
+ *  ovals were measured). Asserted exactly so a drift in the volume model shows up as a
  *  test failure rather than as a still-passing fit verdict. */
 export const EXPECTED_FILL_PCT: Record<number, number> = {
   1: 100.1,
-  2: 98.9,
+  2: 118.2,
   3: 109.1,
   4: 97.6,
-  5: 95.9,
+  5: 114.6,
   6: 95.2,
+  7: 112.3,
 };

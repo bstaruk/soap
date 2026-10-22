@@ -72,7 +72,14 @@ const dates = [fm.poured ? `poured ${fm.poured}` : "", fm.cut ? `cut ${fm.cut}` 
     <dt>Fill</dt>
     <dd>
       {fm.fill_pct}% of cavity{ceiling && <span class="muted"> (ceiling {ceiling}%)</span>}{
-        fm.overflowed && <span class="warn"> overflowed</span>
+        fm.fill_pct_correct !== undefined ? (
+          <span class="warn">
+            {" "}
+            as planned — against the measured mold it's {fm.fill_pct_correct}%; see the notes
+          </span>
+        ) : (
+          fm.overflowed && <span class="warn"> overflowed</span>
+        )
       }
     </dd>
 

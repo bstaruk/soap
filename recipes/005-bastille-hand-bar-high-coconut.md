@@ -14,6 +14,8 @@ oils: { olive: 62, coconut_76: 28, castor: 10 }
 lye_g: 75
 soapcalc_confirmed: true
 fill_pct: 95.9
+fill_pct_correct: 114.6
+overflowed: true
 fragrance:
   - { id: bb-sensuous-sandalwood, g: 11 }
 yield: { bars: 6, cut_in: null }
@@ -119,6 +121,7 @@ No prep for the silicone oval mold. Set it on a flat surface.
 - **Still curing** as of 2026-07-17 — ~3 weeks in, under the 4-week minimum. Earliest usable ~2026-07-25; a fuller cure through ~2026-08-08.
 - **Cure verdict: pending.** A *cured* `retro` around late July / early August captures how the 28%-coconut hand bar actually performs — the whole reason for the experiment.
 - **Correction (2026-10-22):** the unmold above is wrong. The bars were in the mold for more than 48 hours — so unmolded no earlier than 2026-06-29 — and were still too soft. They were forced out anyway and came out badly misshapen, like melted lumps of wax. The `cut` date is left as first recorded; the real one is a day or more later. Lesson kept: a high-olive bar that isn't firm stays in the mold, however long that takes.
+- **Correction (2026-10-22): the fill.** The 95.9% above was computed against an oval cavity of 143.4 mL, worked out from the mold's dimensions as if it were a rectangle. Measured with water on 2026-10-22, a cavity holds about 120g. Against the measured mold this batch comes to **114.6%** — more batter than the six cavities hold. Overfull cavities may have added to the misshapen unmold, alongside the soft bars being forced out; that is a guess, not a record. The lye is unaffected.
 - **Cured — verdict recorded 2026-10-22.** Smells nice and works well; the bars are lumpy from the forced unmold but perform fine. **The 62/28/10 hand blend at 6% superfat is confirmed as the house hand soap** and will keep being made. No finer notes on lather, hardness, or scent strength were taken.
 
 ---

@@ -14,6 +14,8 @@ oils: { olive: 72, coconut_76: 18, castor: 10 }
 lye_g: 74
 soapcalc_confirmed: false
 fill_pct: 98.9
+fill_pct_correct: 118.2
+overflowed: true
 fragrance:
   - { id: bb-vanilla-bean, g: 24 }
   - { id: bb-sensuous-sandalwood, g: 12 }
@@ -117,6 +119,7 @@ No prep for the silicone oval mold. Set it on a flat surface.
 ## Outcome
 
 - **Poured** 2026-03-17, **unmolded** ~2026-03-18 (cleanly, at ~30h) → 6 bars. Cure clock starts at unmold. Filled the cavities to ~99%.
+- **Correction (2026-10-22):** the 98.9% fill above was computed against an oval cavity of 143.4 mL, worked out from the mold's 3.5" × 2.5" × 1" dimensions as if it were a rectangle. Measured with water on 2026-10-22, a cavity holds about 120g. Against the measured mold this batch comes to **118.2%** — more batter than the six cavities hold. The "filled to ~99%" above can't be literally right; what happened to the excess (domed tops, a spill, leftover batter) wasn't recorded. The lye is unaffected.
 - **Cure verdict: not recorded.** Long cured; no assessment of the finished bar was written down — including how dark the high-vanillin Vanilla Bean actually browned it, which is the interesting question here. A *cured* `retro` would capture it.
 
 ---

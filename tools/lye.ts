@@ -3,7 +3,7 @@
  * Why this exists: Claude does not do lye arithmetic, and a hobbyist triple-checking on
  * SoapCalc is a second opinion, not a first line of defense. This script is the first line.
  * It reads the SAP table and mold data that the rest of the repo trusts, produces every number
- * a recipe needs, and re-proves itself against six real batches on every `--self-check` run.
+ * a recipe needs, and re-proves itself against seven real batches on every `--self-check` run.
  *
  * It answers two questions the eye cannot:
  *
@@ -36,7 +36,7 @@ import type { Molds, Sap } from "../src/lib/schema.ts";
 
 const HELP = `Cold-process soap calculator.
 
-  --self-check          re-prove the six historical batches and exit
+  --self-check          re-prove the seven historical batches and exit
   --mold MOLD           mold key from inventory/molds.toml
   --oils G              total oil weight in grams
   --blend SPEC          e.g. olive=62,coconut=28,castor=10
@@ -90,7 +90,7 @@ export function checkFragranceLedger(): number {
 }
 
 export function selfCheck(sap: Sap, molds: Molds): number {
-  console.log("Self-check — re-proving six real batches against the pinned SAP table.\n");
+  console.log("Self-check — re-proving seven real batches against the pinned SAP table.\n");
   let failures = 0;
 
   for (const f of SELF_CHECK) {
@@ -129,7 +129,7 @@ export function selfCheck(sap: Sap, molds: Molds): number {
     );
   } else {
     console.log(
-      "All six reproduce. Lye weights match SoapCalc; the overflow is caught and the five fits pass.",
+      "All seven reproduce. Lye weights match SoapCalc; every overflow is caught and every fit passes.",
     );
   }
 

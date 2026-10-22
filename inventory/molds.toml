@@ -53,13 +53,23 @@ type = "cavity"
 construction = "Single-piece silicone"
 cavities = 6
 cavity_in = { length = 3.5, width = 2.5, height = 1.0 }
-cavity_ml = 860.3
-cavity_ml_each = 143.4
+cavity_ml = 720.0
+cavity_ml_each = 120.0
+cavity_measured = """
+120g of water in one cavity, filled as full as it would go without spilling — 2026-10-22. It may \
+take a couple of grams more at the true brim; 120 is the reading, so 120 is the number. \
+`cavity_in` is the oval's outer bounds, not a box: the volume was first entered as \
+3.5 × 2.5 × 1 in³ = 143.4 mL per cavity, as if each cavity were a rectangle, and every oval batch \
+through #7 was sized against that."""
 lid = false
 max_fill_pct = 100
 fill_evidence = """
-Batch #2 fit at 98.4%, Batch #5 at 95.3%. Small open cavities dome less forgivingly than a loaf — \
-no length to absorb the excess — so the ceiling stays at the rim."""
+Against the measured 120 mL, every oval batch so far was oversized. Batch #7 is the direct \
+evidence: poured across both molds to the brim with a fair amount of batter left over (computed \
+94.0% against the old volume). Batches #2 and #5 were recorded as fitting at ~99% and ~96%, but \
+they compute well over the rim against the measured cavity — where the excess went wasn't \
+recorded. Small open cavities dome less forgivingly than a loaf — no length to absorb the excess \
+— so the ceiling stays at the rim, and formulate's 92–95% target leaves the real margin."""
 notes = """
 Brambleberry recommends 1 tsp sodium lactate per lb of oils for clean release. Individual cavities \
 cool fast; insulate or gel goes uneven (cosmetic only). No cutting — bars are individually molded. \
@@ -75,19 +85,20 @@ type = "cavity"
 construction = "Two single-piece silicone molds, poured as one batch"
 cavities = 12
 cavity_in = { length = 3.5, width = 2.5, height = 1.0 }
-cavity_ml = 1720.6
-cavity_ml_each = 143.4
+cavity_ml = 1440.0
+cavity_ml_each = 120.0
+cavity_measured = """
+Twelve of the single mold's measured 120g cavities (2026-10-22). One cavity was measured; the \
+second mold is taken to match, and in Batch #7 the two filled and released the same."""
 lid = false
 max_fill_pct = 100
 fill_evidence = """
-Batch #7 was the first pour across both, at 94.0% computed — and it did NOT fit: every cavity was \
-poured to the brim with a fair amount of batter left over. One cavity measures 120g of water \
-filled very full (2026-10-22), well under the 143.4 ml cavity_ml_each assumes — the cavities are \
-ovals, not 3.5" × 2.5" × 1" rectangles. Until cavity_ml is corrected, the fill this mold computes \
-is over-optimistic. The ceiling is carried over from the single mold."""
+Batch #7 was the first pour across both and did NOT fit: every cavity was poured to the brim with a \
+fair amount of batter left over. It computed 94.0% against the old rectangle volume; against the \
+measured cavities it is well over the rim. The ceiling is carried over from the single mold."""
 notes = """
-The second mold's cavities are taken to match the first; in Batch #7 both released the same. Pour the two molds in alternation so neither is left to be filled from the \
-thickened bottom of the pot."""
+Pour the two molds in alternation so neither is left to be filled from the thickened bottom of the \
+pot."""
 
 # The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
 # cut freehand.
