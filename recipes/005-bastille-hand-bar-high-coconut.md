@@ -1,6 +1,6 @@
 ---
 batch: 5
-status: curing
+status: cured
 mold: bb-6cav-oval
 profile: hand
 parent: 2
@@ -118,6 +118,8 @@ No prep for the silicone oval mold. Set it on a flat surface.
 - **Poured** 2026-06-27, **unmolded** ~2026-06-28 → 6 bars. Cure clock started at unmold. Fill ~96%.
 - **Still curing** as of 2026-07-17 — ~3 weeks in, under the 4-week minimum. Earliest usable ~2026-07-25; a fuller cure through ~2026-08-08.
 - **Cure verdict: pending.** A *cured* `retro` around late July / early August captures how the 28%-coconut hand bar actually performs — the whole reason for the experiment.
+- **Correction (2026-10-22):** the unmold above is wrong. The bars were in the mold for more than 48 hours — so unmolded no earlier than 2026-06-29 — and were still too soft. They were forced out anyway and came out badly misshapen, like melted lumps of wax. The `cut` date is left as first recorded; the real one is a day or more later. Lesson kept: a high-olive bar that isn't firm stays in the mold, however long that takes.
+- **Cured — verdict recorded 2026-10-22.** Smells nice and works well; the bars are lumpy from the forced unmold but perform fine. **The 62/28/10 hand blend at 6% superfat is confirmed as the house hand soap** and will keep being made. No finer notes on lather, hardness, or scent strength were taken.
 
 ---
 
