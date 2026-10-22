@@ -66,6 +66,8 @@ export const mold = z.object({
   cavity_in: z.object({ length: z.number(), width: z.number(), height: z.number() }),
   cavity_ml: z.number().positive(),
   cavity_ml_each: z.number().positive().optional(),
+  /** How cavity_ml was measured — water on the scale, with the date. Required in practice for a new mold. */
+  cavity_measured: z.string().optional(),
   lid: z.boolean(),
   max_fill_pct: z.number().positive().optional(),
   fill_evidence: z.string().optional(),
@@ -189,6 +191,10 @@ export const recipeFrontmatter = z.object({
   soapcalc_confirmed: z.boolean().default(false),
 
   fill_pct: z.number(),
+  /** Set only on a recipe whose recorded fill was computed against a mold volume later found to be
+   *  wrong (the ovals, before they were measured). fill_pct stays as recorded; this is the
+   *  calculator's figure against the measured cavity. */
+  fill_pct_correct: z.number().optional(),
   overflowed: z.boolean().default(false),
 
   fragrance: z.array(recipeFragrance).default([]),

@@ -12,6 +12,10 @@
  *      not calculated, and its frontmatter says so (`lye_g_correct`, `overflowed`). The lint
  *      checks the annotation, not the mistake — the cautionary tale stays frozen in the archive.
  *
+ *      The oval batches (#2, #5, #7) follow the same pattern for fill: their recorded fill_pct
+ *      was computed against a cavity volume later measured to be wrong, so it stays as recorded
+ *      and `fill_pct_correct` carries the calculator's figure against the measured mold.
+ *
  *   2. Frontmatter is schema-checked and cross-file references hold: mold and fragrance ids
  *      exist in inventory, oils sum to 100, lifecycle fields match status, and every poured
  *      recipe's fragrance weights agree with the ledger in inventory/fragrances.toml.
@@ -140,10 +144,13 @@ function checkRecipe(raw: RawRecipe, ctx: Context): string[] {
     );
   }
 
+  // fill_pct_correct marks a recipe whose recorded fill was computed against a mold volume that
+  // was later measured and corrected; the calculator must reproduce the annotation.
   const fill = r.mold!.fillPct;
-  if (Math.abs(fill - fm.fill_pct) > FILL_TOLERANCE) {
+  const recordedFill = fm.fill_pct_correct ?? fm.fill_pct;
+  if (Math.abs(fill - recordedFill) > FILL_TOLERANCE) {
     errors.push(
-      `fill does not reproduce: calculator says ${fixed(fill, 1)}%, frontmatter records ${fm.fill_pct}%`,
+      `fill does not reproduce: calculator says ${fixed(fill, 1)}%, frontmatter records ${recordedFill}%`,
     );
   }
   if (fm.overflowed === r.mold!.fits) {

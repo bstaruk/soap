@@ -1,9 +1,9 @@
 /** The calculator, re-proved.
  *
- * Two jobs. The six-batch fixture is the regression guard: it re-derives every recorded lye
+ * Two jobs. The seven-batch fixture is the regression guard: it re-derives every recorded lye
  * weight and fill percentage from the pinned SAP table, and it catches the batch that
  * overflowed. Everything else tests the places where the JavaScript port could plausibly
- * diverge from the Python original — rounding, sorting, floor division — none of which the six
+ * diverge from the Python original — rounding, sorting, floor division — none of which the seven
  * batches happen to exercise.
  */
 
@@ -161,7 +161,7 @@ describe("compute", () => {
   });
 });
 
-describe("the six batches", () => {
+describe("the seven batches", () => {
   for (const f of SELF_CHECK) {
     it(`#${f.batch} reproduces — ${f.note}`, () => {
       const r = compute({
