@@ -1,12 +1,12 @@
 ---
 batch: 7
-status: ready
+status: curing
 mold: bb-6cav-oval-x2
 profile: body
 parent: null
 created: 2026-10-09
-poured:
-cut:
+poured: 2026-10-20
+cut: 2026-10-22
 oils_g: 1071
 superfat_pct: 7
 water_pct: 38
@@ -97,3 +97,11 @@ None. The only scent in this bar is the cocoa butter.
 ## Batch Notes
 
 ## Outcome
+
+- **Poured** 2026-10-20, ~5pm EST, as written — no changes to the oils, lye, water, or additives reported. Fill computed at 94.0% across both ovals. Unscented, so no fragrance ledger debit.
+- **Trace:** stick-blended until the batter looked like melted chocolate or thin pudding, then poured — a light-to-medium trace by the usual description.
+- **Spritz:** 90% isopropyl, not the 99% the method calls for. No soda ash visible at unmold, though on a bar this pale light ash would be hard to see.
+- **Scent:** a strong cocoa smell for the first ~18–24 hours, gone by unmold. The question for the cure retro is whether any comes back once the bars dry out, or whether unrefined cocoa butter at 10% simply doesn't carry through saponification.
+- **Unmolded** 2026-10-22, ~10am EST — about 41 hours in the mold. **All 12 bars released cleanly, with no freezer**, and kept crisp edges. Batch #5 (62% olive, no butters) came out misshapen from this mold when forced out before it had firmed, even after more than 48 hours; the 25% butters plus sodium lactate are the likely difference. First batch poured across both oval molds — both filled and released the same.
+- **Cure clock started 2026-10-22.** Earliest usable **2026-11-19** (4 weeks); fuller cure **2026-12-03 to 2026-12-17** (6–8 weeks).
+- **When cured:** a *cured* `retro` for the verdict — hardness against the house body bar, lather (the butters should make it creamier, not bubblier), skin feel at 7% superfat, color, and whether any cocoa scent survived the cure.
