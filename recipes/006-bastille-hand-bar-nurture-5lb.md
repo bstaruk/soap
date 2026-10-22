@@ -1,12 +1,12 @@
 ---
 batch: 6
-status: curing
+status: cured
 mold: nurture-5lb
 profile: hand
 parent: 5
 created: 2026-07-17
 poured: 2026-07-17
-cut:
+cut: 2026-07-20
 oils_g: 1600
 superfat_pct: 6
 water_pct: 38
@@ -17,7 +17,7 @@ fill_pct: 95.2
 fragrance:
   - { id: bb-vanilla-bean, g: 24 }
   - { id: bb-sensuous-sandalwood, g: 20 }
-yield: { bars: 18, cut_in: 1.0 }
+yield: { bars: 36, cut_in: 1.0 }
 ---
 
 # Bastille Hand Bar — High-Coconut
@@ -125,6 +125,9 @@ Assemble the silicone liner in the wood frame, push-out holes down; set the clea
 - **In the mold** as of 2026-07-17 — `cut` still blank. **First loaf to be cut in the MoldMarket miter box**, which has never cut a real loaf; Batch #6's 1" cut is described as a plan, not yet a record.
 - **When cut:** run a *poured/cut* `retro` to set the `cut` date (starts the cure clock), record how the miter box handled a Nurture loaf at 1" and the actual bar count, and confirm the loaf cleared the box's 4.625" × 3.5" opening.
 - **When cured** (~4–6 weeks after the cut): a second `retro` for the finished-bar verdict.
+- **Cut** 2026-07-20, recorded 2026-10-22. Left in the mold **3 days on purpose** — after Batch #5's forced unmold, high-olive loaves now get three days to firm — and it came out clean. **First loaf through the MoldMarket miter box**, and it cut fine.
+- **A new cut, not the plan:** sliced at 1" with the **wavy cutter**, then each slice halved the long way with the wavy cutter again — roughly 1" × 1.75" × 2.5" pieces, like hotel bars about twice as thick, wavy on two faces. **36 pieces** is 18 one-inch slices × 2; the pieces were not counted. Brian's favorite soap so far, and the **double wavy cut is now how hand soap gets cut**.
+- **Cured — verdict recorded 2026-10-22.** Smells nice and works well; same verdict as Batch #5, and the blend stays the house hand soap. No finer notes on lather, hardness, or scent strength were taken.
 
 ---
 
