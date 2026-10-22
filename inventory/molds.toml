@@ -76,12 +76,13 @@ cavity_ml_each = 143.4
 lid = false
 max_fill_pct = 100
 fill_evidence = """
-Batch #7 was the first pour across both, at 94.0% computed: all 12 cavities filled under the rim, \
-and both molds released cleanly at ~41h. The ceiling is carried over from the single mold, where \
-Batches #2 and #5 both fit under the rim — each cavity fills exactly as it does there."""
+Batch #7 was the first pour across both, at 94.0% computed — and it did NOT fit: every cavity was \
+poured to the brim with a fair amount of batter left over. One cavity measures 120g of water \
+filled very full (2026-10-22), well under the 143.4 ml cavity_ml_each assumes — the cavities are \
+ovals, not 3.5" × 2.5" × 1" rectangles. Until cavity_ml is corrected, the fill this mold computes \
+is over-optimistic. The ceiling is carried over from the single mold."""
 notes = """
-The second mold's cavities are taken to match the first, and Batch #7 bore that out — both filled \
-and released the same. Pour the two molds in alternation so neither is left to be filled from the \
+The second mold's cavities are taken to match the first; in Batch #7 both released the same. Pour the two molds in alternation so neither is left to be filled from the \
 thickened bottom of the pot."""
 
 # The miter box bounds which loaves can physically be cut. A mold that does not clear it has to be
