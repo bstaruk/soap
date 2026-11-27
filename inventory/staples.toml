@@ -34,8 +34,10 @@ house_range_pct = [10, 10]
 ceiling_note = "Pinned at 10% across every batch to date. Above ~15% bars turn sticky."
 
 # The two butters, bought from Bramble Berry on 2026-10-09: 2 × "Shea Butter - 1 lb" and 1 × "Organic
-# Cocoa Butter Wafers - 1 lb". Unlike the bulk oils above they are bought by the pound, so they can
-# run out — check what's left before sizing a loaf.
+# Cocoa Butter Wafers - 1 lb". Batch #7 took 161g of the shea and 107g of the cocoa butter. One more
+# pound of each was ordered from Bramble Berry on 2026-11-27 and has not arrived yet. Unlike the
+# bulk oils above they are bought by the pound, so they can run out — weigh what's left before
+# sizing a loaf.
 
 [oils.shea_butter]
 sap_ref = "shea_butter"

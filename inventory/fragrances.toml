@@ -106,3 +106,39 @@ Slight acceleration in CP — have the clay and fragrance fully prepped before t
 quickly. Discolors to dark brown over a 4-week cure."""
 scent = "Marshmallow, buttery praline, creamy caramel, toasted coconut. Sweet gourmand."
 status = "nearly spent"
+
+# The two below were ordered from Bramble Berry on 2026-11-27 for the first scented butter bars.
+# `vanillin`, `behavior` and `scent` are Bramble Berry's published specs as they appeared in
+# search-index copies of the product pages that day — the live pages were not read. Confirm them
+# against the page or the bottle when the order arrives, and drop the `status` line then.
+
+[fragrances.bb-coconut-cream]
+label = "Coconut Cream"
+brand = "Brambleberry"
+kind = "fragrance oil"
+initial_g = 57 # 2 oz
+used = []
+remaining_g = 57
+vanillin = "none"
+max_usage_pct = "unknown"
+behavior = """
+Listed as behaving well in cold process, with no acceleration. Vanilla content 0%, but rated to \
+discolor to off-white — untested here, and unproven on the ivory butter bar."""
+scent = "Coconut, vanilla, almond, papaya, cocoa."
+status = "ordered 2026-11-27 — not yet arrived"
+
+[fragrances.bb-caffe-latte]
+label = "Caffe Latte"
+brand = "Brambleberry"
+kind = "fragrance oil"
+initial_g = 57 # 2 oz
+used = []
+remaining_g = 57
+vanillin = "none"
+max_usage_pct = "unknown"
+behavior = """
+Listed with mild acceleration in cold process — on a butter blend that already traces sooner, stage \
+everything before trace. Vanilla content 0%, rated to discolor to off-white. May crystallize in \
+cold weather. Untested here."""
+scent = "Rolled oats, coconut, frothed cream, roasted coffee beans, heliotrope; tonka bean, maple sugar, musk."
+status = "ordered 2026-11-27 — not yet arrived"
