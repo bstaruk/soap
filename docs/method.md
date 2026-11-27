@@ -1,6 +1,6 @@
 # House Method — Cold Process
 
-This is the current process, the one every new recipe renders from. It is the **refined era** that landed in Batch #4 and has held since: clay stick-blended into the oils up front, the 6qt stockpot on induction with no transfer step, an IPA spritz on the poured top, and — new as of Batch #6 — the miter box at a 1" cut, with hand soap getting a double wavy cut.
+This is the current process, the one every new recipe renders from. It is the **refined era** that landed in Batch #4 and has held since: clay stick-blended into the oils up front, the 6qt stockpot on induction with no transfer step, an IPA spritz on the poured top, and — new as of Batch #6 — the miter box at a 1" cut, with hand soap getting a double wavy cut. Batch #7 added the butters: the house blend now carries shea and cocoa butter, which changes how the oils are melted and how warm they are combined.
 
 Earlier batches describe an older process (All-Clad bowls, a post-trace clay slurry, a hand-stir for fragrance, a freehand knife). That is not drift to fix — a poured recipe is frozen history. See [`recipes/README.md`](../recipes/README.md).
 
@@ -26,11 +26,11 @@ This is the canonical list. A recipe carries a one-line **Safety** reminder in i
 The house defaults, derived from the batches to date. A recipe may depart from these, but the departure is a decision worth noting, not a default.
 
 - **Water:** 38% of oil weight. (Runs a ~26% lye concentration — on the fluid side, which buys working time and matters for the fill math.)
-- **Superfat:** 5% for body bars, 6% for the high-coconut hand bar (the extra fat offsets the extra cleansing).
+- **Superfat:** 7% for the butter bar, the house blend (the hard butters offset the softness). 5% for the Bastille body bar, 6% for the high-coconut hand bar (the extra fat offsets the extra cleansing).
 - **Kaolin clay:** 2% of oil weight, stick-blended into the oils.
 - **Sodium lactate:** ~1 tsp per pound of oils (the calculator gives the millilitres), into the *cooled* lye solution.
-- **Temperature:** combine oils and lye both in the **105–120°F** window, within ~10°F of each other.
-- **Time in the mold:** 24–48 hours for most batches; **3 days for high-olive batches** (the Bastille blends). Batch #5 was forced out of the ovals after more than 48 hours while still soft and came out misshapen; Batch #6 sat 3 days and released clean.
+- **Temperature:** combine oils and lye both in the **105–120°F** window, within ~10°F of each other. **A butter batch stays at 110–120°F** — cocoa butter starts to set below ~95°F, and a cooling pot thickens into a false trace.
+- **Time in the mold:** 24–48 hours for most batches, the butter bar included — Batch #7 released from the ovals cleanly at about 41 hours with no freezer. **3 days for high-olive batches** (the Bastille blends). Batch #5 was forced out of the ovals after more than 48 hours while still soft and came out misshapen; Batch #6 sat 3 days and released clean.
 - **Cut:** 1" bars in the miter box. **Hand soap gets the double wavy cut** — 1" slices with the wavy cutter, each slice then halved the long way with the wavy cutter, for thick hotel-style pieces about 1" × 1.75" × 2.5". Batch #6 is where it started.
 
 ## The process
@@ -50,14 +50,14 @@ Glasses and gloves on. Ventilation on. Pre-weigh every ingredient into its own c
 4. Stir in the sodium lactate.
 5. Set it aside to cool to **105–120°F**.
 
-### 4. Oils and clay
-1. Melt the coconut oil, then combine it with the olive and castor in the 6qt stockpot on the induction element.
+### 4. Butters, oils and clay
+1. **Butter bar:** melt the cocoa butter, shea butter and coconut oil together in the 6qt stockpot on the induction element, on low, until completely clear — no specks left. Take the pot off the heat and add the olive and castor. **Bastille blends:** melt the coconut oil, then combine it with the olive and castor in the stockpot.
 2. **Stick-blend the kaolin clay straight into the combined oils** until smooth — no slurry cup.
-3. Bring the oils to **105–120°F**, within ~10°F of the lye solution.
+3. Bring the oils to **105–120°F**, within ~10°F of the lye solution. With butters in the pot, stay at **110–120°F**.
 
 ### 5. Combine and trace
 1. Pour the cooled lye solution into the stockpot — blend in place, no transfer.
-2. Stick-blend in **5–10 second bursts**, alternating with hand stirring, until **light trace** (the batter thickens just enough to leave a faint trail off the blender). The high-olive blends are forgiving; the higher-coconut hand blend moves a touch faster.
+2. Stick-blend in **5–10 second bursts**, alternating with hand stirring, until **light trace** (the batter thickens just enough to leave a faint trail off the blender). The high-olive blends are forgiving; the higher-coconut hand blend moves a touch faster. **The butters bring trace on sooner than either** — stop at light trace and go straight to the pour.
 
 ### 6. Fragrance
 1. Pre-mix the fragrance in a cup, then add at light trace.
@@ -77,5 +77,5 @@ Glasses and gloves on. Ventilation on. Pre-weigh every ingredient into its own c
 
 ### 9. Cure *(4–6 weeks)*
 1. Rack the bars with airflow on all sides; cool, dry, out of direct sun.
-2. **4 weeks minimum**; 6–8 is better for these high-olive bars. The higher-coconut hand bar hardens faster but still wants a full cure for mildness.
+2. **4 weeks minimum**; 6–8 is better, for the butter bar and the high-olive bars alike. The higher-coconut hand bar hardens faster but still wants a full cure for mildness.
 3. Label with the batch and cut date.
