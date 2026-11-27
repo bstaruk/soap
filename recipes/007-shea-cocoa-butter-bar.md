@@ -1,6 +1,6 @@
 ---
 batch: 7
-status: curing
+status: cured
 mold: bb-6cav-oval-x2
 profile: body
 parent: null
@@ -109,3 +109,12 @@ None. The only scent in this bar is the cocoa butter.
 - **Unmolded** 2026-10-22, ~10am EST — about 41 hours in the mold. **All 12 bars released cleanly, with no freezer**, and kept crisp edges. Batch #5 (62% olive, no butters) came out misshapen from this mold when forced out before it had firmed, even after more than 48 hours; the 25% butters plus sodium lactate are the likely difference. First batch poured across both oval molds — both released the same.
 - **Cure clock started 2026-10-22.** Earliest usable **2026-11-19** (4 weeks); fuller cure **2026-12-03 to 2026-12-17** (6–8 weeks).
 - **When cured:** a *cured* `retro` for the verdict — hardness against the house body bar, lather (the butters should make it creamier, not bubblier), skin feel at 7% superfat, color, and whether any cocoa scent survived the cure.
+- **Cured — verdict recorded 2026-11-27**, 36 days after unmold: past the 4-week minimum (2026-11-19), a week short of the fuller window (2026-12-03). Brian's words: **"the bars are amazing"** and **"I honestly would not change a single thing."** The verdict is make it again, as written — "will honestly just make this formula from now on."
+- **Used early:** Brian started using the bars about 10 days after the pour (~2026-10-30), roughly 8 days out of the mold and well short of the 4-week minimum. Nothing went wrong that he reported; the bars already performed.
+- **Hardness:** a hard bar, and the win he called out is the molding — "so much easier to make perfect-molded bars than the olive oil formula." That matches the clean, freezer-free release at 41 hours recorded above.
+- **Lather:** creamy and dense, low on bubbles — what the butters were expected to give.
+- **Skin feel:** soft and moisturized at 7% superfat, no tightness.
+- **Color:** ivory / cream. He loves it. With no fragrance in the bar there was nothing to brown it.
+- **Scent:** this answers the open question — the cocoa smell that was gone at unmold is there in the cured bar, subtle: "so good that it makes me want to eat the bar." Unrefined cocoa butter at 10% does carry through.
+- **Issues:** none. No soda ash, no orange spots, no mushiness in the dish.
+- **For the next batch:** the blend, superfat and water stay exactly as they are; only the oil weight changes, because this batch was sized against the old cavity volume and came to 112.3% of the real one. The one new idea is a fragrance — non-vanillin, so the ivory holds, and in a buttery / savory direction that sits with the cocoa butter instead of covering it. A scented version is a new variable on a blend that already traces sooner than the high-olive bars, so it is a `formulate` conversation, not a drop-in.
