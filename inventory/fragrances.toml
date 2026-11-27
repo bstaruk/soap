@@ -108,9 +108,9 @@ scent = "Marshmallow, buttery praline, creamy caramel, toasted coconut. Sweet go
 status = "nearly spent"
 
 # The two below were ordered from Bramble Berry on 2026-11-27 for the first scented butter bars.
-# `vanillin`, `behavior` and `scent` are Bramble Berry's published specs as they appeared in
-# search-index copies of the product pages that day — the live pages were not read. Confirm them
-# against the page or the bottle when the order arrives, and drop the `status` line then.
+# `vanillin`, `behavior` and `scent` are Bramble Berry's published specs, read from the live product
+# pages on 2026-11-27. Neither page gives a usage rate — both point to their Fragrance Calculator —
+# so `max_usage_pct` stays unknown. Drop the `status` line when the order arrives.
 
 [fragrances.bb-coconut-cream]
 label = "Coconut Cream"
@@ -122,8 +122,10 @@ remaining_g = 57
 vanillin = "none"
 max_usage_pct = "unknown"
 behavior = """
-Listed as behaving well in cold process, with no acceleration. Vanilla content 0%, but rated to \
-discolor to off-white — untested here, and unproven on the ivory butter bar."""
+Bramble Berry: "Behaves well in cold process", recommended for cold process, vanilla content 0.00, \
+discoloration "Off-white", flashpoint 200°F. Several customer reviews on the page say the scent \
+morphs or goes weak in cold process even though it is lovely in the bottle; one reports it gelled \
+hot. Untested here — try it on a small batch first."""
 scent = "Coconut, vanilla, almond, papaya, cocoa."
 status = "ordered 2026-11-27 — not yet arrived"
 
@@ -137,8 +139,10 @@ remaining_g = 57
 vanillin = "none"
 max_usage_pct = "unknown"
 behavior = """
-Listed with mild acceleration in cold process — on a butter blend that already traces sooner, stage \
-everything before trace. Vanilla content 0%, rated to discolor to off-white. May crystallize in \
-cold weather. Untested here."""
+Bramble Berry: "Mild acceleration in cold process", recommended for cold process, vanilla content \
+0.00, discoloration "Off-white", flashpoint 200°F, shelf life 1–2 years. On a butter blend that \
+already traces sooner, stage everything before trace. One customer review reports it discolored "a \
+bit of brown" with no acceleration. May crystallize in cold weather — warm the bottle in ~125°F \
+water and shake. Untested here."""
 scent = "Rolled oats, coconut, frothed cream, roasted coffee beans, heliotrope; tonka bean, maple sugar, musk."
 status = "ordered 2026-11-27 — not yet arrived"
