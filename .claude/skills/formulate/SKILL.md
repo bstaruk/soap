@@ -24,7 +24,7 @@ Read, every session, before proposing anything:
 Converge, in conversation, on the details Brian named in the request and the ones he didn't:
 
 - **Which mold.** Sets the batch size and the fill ceiling. If unstated, ask — it's the one input nothing else can be computed without.
-- **Use case.** Hand bar, body/shower bar, gift, experiment. This picks the house blend and superfat (`docs/formulation.md`), and a use case outside the two known blends is a real design conversation, not a default.
+- **Use case.** Hand bar, body/shower bar, gift, experiment. This picks the house blend and superfat (`docs/formulation.md`) — the butter bar unless Brian names one of the Bastille blends — and a use case outside the known blends is a real design conversation, not a default.
 - **Fragrance.** Read the ledger for what's on hand, how much, its vanillin (browning) and behavior (acceleration). A nearly-spent bottle either sets the batch size or gets blended. Never spec more than the bottle holds.
 - **Any specific oils or intent** — a wish to use up a nearly-spent bottle, try coffee grounds, aim for a pale bar, whatever. Surface the consequences (e.g. "Vanilla Bean will brown that pale bar dark").
 

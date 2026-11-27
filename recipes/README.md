@@ -49,7 +49,7 @@ Copy this for a new recipe. The frontmatter is the real, tool-read data; the bod
 batch: 7                    # batch number; matches the filename prefix
 status: draft               # draft | ready | curing | cured | abandoned | failed
 mold: bb-6cav-oval          # a key from inventory/molds.toml
-profile: hand               # body | hand — which house blend (see docs/formulation.md)
+profile: hand               # body | hand — what the bar is for; the blend itself is `oils` below
 parent: 5                   # batch this descends from, or null for a fresh line
 created: 2026-07-20
 poured:                     # set by retro at pour; blank until then
